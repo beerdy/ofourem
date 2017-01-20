@@ -12,7 +12,8 @@ class BaseProject
     # с этим envoroment работаем как с переменной env
 
     @env = Environment.new( environment )
-    
+
+    # все три контроллера работают с данными клиента которые мы и передаем им
     @metadat = MetaController.new( @env )
     @resultat = ResultController.new( @env )
     @downgrade = DowngradeController.new( @env )
