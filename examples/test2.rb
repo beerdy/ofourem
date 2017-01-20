@@ -6,15 +6,6 @@ module BaseModule
   def dsd
   end
 
-  class ExampleClass
-    def example_method
-      # dsd не сработает см. выше      
-      some_hash = { :text => "#n}\\nthis text" }
-      render :json => some_hash #{'some_hash'=>12, 'elso_hash' => {'one'=>'some text\','two'=>true}}
-      return 'no rendering'
-    end
-
-  end
 
 
   class Application
@@ -27,11 +18,11 @@ module BaseModule
     def start
       puts 'start code'
       
-      obj_ex = ExampleClass.new()
+      obj_ex = SomeClass.new()
       # init render for
 
 
-      obj_ex.example_method
+      obj_ex.some_method
 
       puts 'end code no rendering'
     end
@@ -45,7 +36,7 @@ module BaseModule
   extend self
 end
 
-
+# Переписываем стандартное исключение для всего кода (собственно только на вывод)
 begin
   BaseModule.application
 rescue => e
@@ -60,7 +51,7 @@ puts 'end programm'
 
 
 =begin
-      refine ExampleClass do
+      refine SomeClass do
         def render(code, option=nil)
           type, line = code.first
 

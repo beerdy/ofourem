@@ -1,13 +1,21 @@
 # encoding: UTF-8
-require 'ostruct'
 
+# ==== 
 
-a = {
-  :a => 'b'
-}
+#config.ru
 
-o  = OpenStruct.new(a)
+#puts eval('@var', Klass.new.get_binding)  #=> 42
 
-puts "o->a: #{o.a}" if o.a
-a = o.c ? 'yes' : 'no'
-puts "status: #{a}"
+next_class_name = 'example_class'
+
+require "./Rendering"
+
+require "./include/#{next_class_name}"
+
+eval("class ExampleClass; include Rendering;end")
+
+o = ExampleClass.new()
+
+data = o.some_method
+
+o.render data
