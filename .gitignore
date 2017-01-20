@@ -1,0 +1,10 @@
+log/
+tmp/
+mongodump/
+config.yml
+config.rb
+email.rb
+options_db.rb
+options_project.rb
+.run_server
+Gemfile.lock
