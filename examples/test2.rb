@@ -45,9 +45,10 @@ rescue => e
   puts e.backtrace
 
   /undefined\smethod\s\`\+'\sfor\s(.{1,2048}):Hash$/.match(e.message)
-  puts $1
+  puts "Преждевременный выход из программы с данными: #{$1}"
 end
-puts 'end programm'
+
+
 
 
 =begin
