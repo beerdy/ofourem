@@ -1,9 +1,8 @@
 $( document ).ready(function() {
   var test = {
-    pollAdd: function(){
-      
+    elementAdd: function(){
       params = new Object();
-      params['action'] = 'poll_add';
+      params['action'] = 'element_add';
 
       console.log('send to server:', params);      
       data = new Object();
@@ -29,7 +28,7 @@ $( document ).ready(function() {
       window.location.hash = '';
       
       switch(action){
-      case 'pollAdd':
+      case 'elementAdd':
 
         break;
       default:

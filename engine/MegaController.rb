@@ -24,17 +24,17 @@ class MegaController
   # < end static page
 
 
-  def poll_add
+  def element_add
     obj_tags = TagsAdd.new()
     obj_tags.dothis
 
     obj_image = ImageAdd.new()
-    obj_image.poll_add
+    obj_image.element_add
 
-    obj_poll_add = PollAdd.new()
-    obj_poll_add.dothis
+    obj_element_add = elementAdd.new()
+    obj_element_add.dothis
     
-    if obj_poll_add.ok then @meta.poll_add else @downgrade.poll.add
+    if obj_element_add.ok then @meta.element_add else @downgrade.element.add
 
 
       
@@ -47,7 +47,7 @@ class MegaController
       :data => @result.data
     })
   end
-  def poll_read
+  def element_read
   end
   def send_list
     obj_send_list = SendList.new( @env )

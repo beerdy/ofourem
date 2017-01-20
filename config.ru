@@ -4,14 +4,18 @@ require 'rubygems'
 require 'rack'
 require 'json'
 require 'ostruct'
+require 'pp'
+
+require 'options_project'
+require 'db_project'
 
 use Rack::Reloader, 0
 use Rack::Static, :urls => ['/public']
 
 require './config.rb'
 
-require './engine/model/PollAdd.rb'
-require './engine/model/PollsRead.rb'
+require './engine/model/ElementAdd.rb'
+require './engine/model/ElementsRead.rb'
 
 require './engine/Validator.rb'
 require './engine/Environment.rb'
@@ -34,13 +38,12 @@ class Router
     #return start.user  if request_path.match(%r{^/user$})
     # < end static page
 
-    unless start.env.validator.ok
-        puts "error: #{start.env.validator.info}"
-        return start.error( start.env.validator.info ) 
+    unless start.env.check
+        puts "error: #{start.env.info}"
+        return start.error( start.env.info ) 
     end
 
-    return start.poll_add  if request_path.match(%r{^/poll_add$})
-
+    return start.element_add  if request_path.match(%r{^/element_add$})
 
     return start.error( {:bool => false, :code => 8003, :info => "Страница ненайдена - #{request_path}"} ) if no_route
   end 
