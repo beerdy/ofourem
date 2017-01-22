@@ -5,6 +5,8 @@ class ExampleClass
     @message = { :info => some_method }
   end
   def some_method
+    o = SomeClass.new()
+    o.show_head
     '!!!WARNING!!! very strong informations'
   end
   def show_admin(number)
