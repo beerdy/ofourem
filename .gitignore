@@ -4,7 +4,7 @@ mongodump/
 config.yml
 config.rb
 email.rb
-db.rb
+db_project.rb
 options_project.rb
 .run_server
 Gemfile.lock
