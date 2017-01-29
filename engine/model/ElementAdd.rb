@@ -1,16 +1,9 @@
 # encoding: UTF-8
 
-require 'cgi'
-
-
 class ElementAdd
-  def initialize(env)
-    $env = env
+  def initialize
   end
 
   def dothis
-
   end
-
-
 end

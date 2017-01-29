@@ -1,28 +1,30 @@
 # encoding: UTF-8
 
 class MegaController
-
   attr_reader :env
   
   include RenderPage
 
-  
-  # > static page  
+  def initialize(env)
+    
+  end
+  # > static page
   def index
     render_page
   end
+ 
   def admin
     render_page({
       :page_htm => './view/admin.htm'
     })
   end
+ 
   def user
     render_page({
       :page_htm => './view/user.htm'
     })
   end
   # < end static page
-
 
   def element_add
     obj_tags = TagsAdd.new()
@@ -34,21 +36,16 @@ class MegaController
     obj_element_add = elementAdd.new()
     obj_element_add.dothis
     
-    if obj_element_add.ok then @meta.element_add else @downgrade.element.add
-
-
-      
-
-    
-
-
+    if obj_element_add.ok then @meta.element_add else @downgrade.element.add end
 
     render_page({
       :data => @result.data
     })
   end
+
   def element_read
   end
+
   def send_list
     obj_send_list = SendList.new( @env )
     obj_send_list.send_list

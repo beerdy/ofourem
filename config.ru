@@ -3,11 +3,12 @@
 require 'rubygems'
 require 'rack'
 require 'json'
-require 'ostruct'
 require 'pp'
 
-require 'options_project'
-require 'db_project'
+require './lib/deep_struct'
+
+require './options_project'
+require './db_project'
 
 use Rack::Reloader, 0
 use Rack::Static, :urls => ['/public']
@@ -30,12 +31,12 @@ class Router
     no_route     = true
     request_path = env['REQUEST_PATH']
 
-    start = MegaController.new(env)
+    start = MegaController.new env
     
     # > static page
     return start.index if request_path.match(%r{^/$})
-    #return start.admin if request_path.match(%r{^/admin$})
-    #return start.user  if request_path.match(%r{^/user$})
+    return start.admin if request_path.match(%r{^/admin$})
+    return start.user  if request_path.match(%r{^/user$})
     # < end static page
 
     unless start.env.check
