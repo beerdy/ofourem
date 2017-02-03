@@ -4,14 +4,33 @@
     <meta charset="utf-8">
     <title>o4em3.0</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="public/css/hide.css" rel="stylesheet" media="screen">
     <link href="public/css/style.css" rel="stylesheet" media="screen">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="public/js/shared.js"></script>
+    
+    <script src="public/js/fabric.js"></script>
+    <script src="public/js/enviroment.js"></script>
+    <script src="public/js/controller.js"></script>
+    <script src="public/js/navigate.js"></script>    
+    
+    <script src="public/js/initjq.js"></script>
   </head>
   <body>
-    <button id="elementAdd" >опрос добавить</button>
-    <button id="elementRead">опросы прочитать</button>
-    <div class="container">
+    <button id="elementAdd" onclick="return navigate.id(this)">добавить опрос</button>
+    <button id="elementsList">список опросов</button>
+    
+    <div id="elementAddContainer">
+      <h5>Добавиление опроса</h5>
+      Тест опроса: <input></input><br>
+      Варианты опроса: <input></input><br>
+                        <input></input><br>
+      <button>Добавить вариант</button>
     </div>
+
+    <div id="elementListContainer">
+      elementAddCcontainer
+    </div>
+  
   </body>
 </html>
