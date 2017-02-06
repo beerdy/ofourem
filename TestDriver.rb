@@ -5,10 +5,9 @@
 # Именно отсюдого название TestDriver
 # Такой шаг вызван тем, чтобы незабывать тестировать - не отдавать непротестированные данные
 
-class TestedData
-end
-
 module TestDriver
-  
+  def test(data)
+    data
+  end
   extend self
 end

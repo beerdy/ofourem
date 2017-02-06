@@ -2,9 +2,6 @@
 
 module Rendering
   def render(code={}, option=nil)
-    type, line = code.first
-    #puts type
-    #puts line
-    eval("#{code+1}")
+    raise code.to_json
   end
 end

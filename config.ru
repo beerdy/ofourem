@@ -72,28 +72,24 @@ begin
     return start.user  if request_path.match(%r{^/user$})
     # < end static page
     
-    unless start.env.check
-        puts "error: #{start.env.info}"
-        return start.error( start.env.info ) 
-    end
+    #return start.error( start.env.info ) unless start.env.check
 
     return start.element_add  if request_path.match(%r{^/element_add$})
 
-    return start.error( {:bool => false, :code => 8003, :info => "Страница ненайдена - #{request_path}"} ) if no_route
+    return start.error( {:bool => false, :code => 8003, :info => "#{request_path}"} ) if no_route
   # END end def call(env)
 
 rescue => e
 case e.backtrace[0]
 when /Rendering/
-  /undefined\smethod\s\`\+'\sfor\s(.{1,2048}):Hash$/.match(e.message)
-  hash = eval $1
+  hash = JSON.parse e.message
   key, value = hash.first
   case key
-  when :json
+  when 'json'
     return render_page value
-  when :file
-    return render_page value
-  when :index
+  when 'file'
+    return render_page(value)
+  when 'index'
     return render_page
   else
     return render_page

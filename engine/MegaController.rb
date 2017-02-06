@@ -13,11 +13,11 @@ class MegaController
   end
  
   def admin
-    render :file => { :page => 'admin' }
+    render :file => { :page_htm => 'admin' }
   end
  
   def user
-    render :file => { :page => 'user' }
+    render :file => { :page_htm => 'user' }
   end
   # < end static page
 
@@ -51,6 +51,6 @@ class MegaController
   end
 
   def error(message)
-
+    render :file => { :page_htm => '404', :data=>{'page_not_found' => message[:info]} }
   end
 end
