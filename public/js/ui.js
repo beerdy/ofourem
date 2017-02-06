@@ -3,9 +3,14 @@
   this.ui = {
     elementAdd: new Object,
     init: function() {
-      this.elementAdd = {
+      return this.elementAdd_();
+    },
+    elementAdd_: function() {
+      var container;
+      container = 'elementAddContainer';
+      return this.elementAdd = {
         show: function() {
-          document.getElementById("elementAddContainer").style.display = "block";
+          return document.getElementById(container).style.display = "block";
         }
       };
     }

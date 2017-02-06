@@ -2,6 +2,7 @@
 
 require "./Application"
 
+RENDERING_MSG_MAX_SIZE = 2048
 INCLUDING_PATH = 'include'
 SHARED_PATH = 'shared'
 
@@ -35,7 +36,7 @@ begin
 rescue => e
   case e.backtrace[0]
   when /Rendering/
-    /undefined\smethod\s\`\+'\sfor\s(.{1,2048}):Hash$/.match(e.message)
+    /undefined\smethod\s\`\+'\sfor\s(.{1,RENDERING_MSG_MAX_SIZE}):Hash$/.match(e.message)
     puts "RENDERED: #{$1}"
   when /ANother/
     # Another mixin File

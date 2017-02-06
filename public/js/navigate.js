@@ -4,14 +4,14 @@
     init: function(argument) {},
     id: function(it) {
       var action;
-      action = $(it).attr('id');
+      action = it.getAttribute('id');
       window.location.hash = '';
       switch (action) {
+        case 'showElementAdd':
+          return ui.elementAdd.show();
         case 'elementAdd':
-          alert('addContainer');
-          ui.elementAdd.show();
-          networking.elementAdd();
-          break;
+          env.client.action = action;
+          return controller.element.add();
         default:
           break;
       }

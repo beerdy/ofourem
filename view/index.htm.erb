@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>o4em3.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="public/css/hide.css" rel="stylesheet" media="screen">
+    <link href="public/css/style.css" rel="stylesheet" media="screen">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <script src="public/js/fabric.js"></script>
+    <script src="public/js/env.js"></script>
+    <script src="public/js/controller.js"></script>
+    <script src="public/js/navigate.js"></script>
+    <script src="public/js/net.js"></script>
+    <script src="public/js/ui.js"></script>
+    
+    <script src="public/js/initJq.js"></script>
+  </head>
+  <body>
+    <button id="showElementAdd" onclick="return navigate.id(this)">добавить опрос</button>
+    <button id="elementsList">список опросов</button>
+
+    <div id="elementAddContainer">
+      <h5>Добавление опроса</h5>
+      Тест опроса:      <textarea></textarea><button id="elementAdd" onclick="return navigate.id(this)">Опросить</button><br>
+      Варианты опроса:  
+      <ol class="variantsList">
+        <li><input id="variantItem1"></input></li>
+        <li><input id="variantItem2"></input></li>
+        <button id="appendVariantItem" onclick="return navigate.id(this)">Добавить вариант</button>
+      </ol>
+    </div>
+
+    <div id="elementsListContainer">
+      elementAddCcontainer
+    </div>
+  
+  </body>
+</html>

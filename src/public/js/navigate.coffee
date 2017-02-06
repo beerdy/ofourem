@@ -5,13 +5,13 @@ this.navigate =
     # body...
     return
   id: (it) ->
-    action = $(it).attr('id')
+    action = it.getAttribute 'id'
     window.location.hash = ''
     switch action
-      when 'elementAdd'
-        alert 'addContainer'
+      when 'showElementAdd'
         ui.elementAdd.show()
-        networking.elementAdd()
+      when 'elementAdd'
+        env.client.action = action
+        controller.element.add()
       else
         break
-    return

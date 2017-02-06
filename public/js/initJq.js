@@ -2,6 +2,9 @@
 (function() {
   jQuery(document).ready(function() {
     ui.init();
+    env.init();
+    net.init();
+    controller.init();
   });
 
 }).call(this);

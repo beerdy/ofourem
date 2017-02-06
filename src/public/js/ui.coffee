@@ -1,9 +1,11 @@
 this.ui =
   elementAdd: new Object
+
   init: () ->
-    #body
+    @elementAdd_()
+
+  elementAdd_: () ->
+    container = 'elementAddContainer'
     @elementAdd =
       show: () ->
-        document.getElementById("elementAddContainer").style.display = "block";
-        return
-    return
+        document.getElementById(container).style.display = "block"

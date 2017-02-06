@@ -2,27 +2,22 @@
 
 class MegaController
   attr_reader :env
-  
-  include RenderPage
-
+  #include RenderPage
   def initialize(env)
     
   end
   # > static page
   def index
-    render_page
+    #render_page
+    render :index => true
   end
  
   def admin
-    render_page({
-      :page_htm => './view/admin.htm'
-    })
+    render :file => { :page => 'admin' }
   end
  
   def user
-    render_page({
-      :page_htm => './view/user.htm'
-    })
+    render :file => { :page => 'user' }
   end
   # < end static page
 
@@ -56,9 +51,6 @@ class MegaController
   end
 
   def error(message)
-    render_page({ 
-      :data   => message,
-      :static => @env.json.nil?
-    })
+
   end
 end

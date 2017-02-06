@@ -1,3 +1,11 @@
 this.controller =
+  element: new Object
+  
   init:  (argument) -> 
-    console.log '// body...'
+    @element_()
+
+  element_: () ->
+    @element = 
+      add: () ->
+        picker.alement.add()
+        net.element.add()

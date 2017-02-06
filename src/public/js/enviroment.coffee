@@ -1,3 +1,0 @@
-enviroment = init: (argument) ->
-  # body...
-  return
