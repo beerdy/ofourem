@@ -5,6 +5,7 @@
     env.init();
     net.init();
     controller.init();
+    picker.init();
   });
 
 }).call(this);

@@ -8,7 +8,7 @@
     element_: function() {
       return this.element = {
         add: function() {
-          picker.alement.add();
+          picker.element.add();
           return net.element.add();
         }
       };

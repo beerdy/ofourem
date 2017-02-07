@@ -3,5 +3,6 @@ jQuery(document).ready ->
   env.init()
   net.init()
   controller.init()
+  picker.init()
 
   return

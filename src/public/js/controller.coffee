@@ -1,11 +1,11 @@
 this.controller =
   element: new Object
   
-  init:  (argument) -> 
+  init: (argument) -> 
     @element_()
 
   element_: () ->
     @element = 
       add: () ->
-        picker.alement.add()
+        picker.element.add()
         net.element.add()

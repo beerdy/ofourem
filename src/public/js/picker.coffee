@@ -7,4 +7,4 @@ this.picker =
   element_: () ->
     @element =
       add: () ->
-        env.
+        alert 'ok'

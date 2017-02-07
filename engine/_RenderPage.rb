@@ -15,15 +15,15 @@ module RenderPage
 
     elsif (options['static']==true or options['page_htm']) and options['data']
 
-      headers = options['headers'].nil? ? (HEADERS_DEFAULT_STATIC) : options['headers']
-      page_htm = options['page_htm'].nil? ? (PAGE_HTM_DEFAULT) : options['page_htm']
+      headers  = options['headers'].nil?  ? (HEADERS_DEFAULT_STATIC) : options['headers']
+      page_htm = options['page_htm'].nil? ? (PAGE_HTM_DEFAULT)       : options['page_htm']
 
       return [STATUS_DEFAULT, headers, [ ERB.new(IO.read("./#{PATH_VIEW}/#{page_htm}.htm.erb")).result( BindPage.new( TestDriver.test(options['data']) ).bind ) ]]
 
     elsif options['static']==true or options['page_htm']
 
-      headers = options['headers'].nil? ? (HEADERS_DEFAULT_STATIC) : options['headers']
-      page_htm = options['page_htm'].nil? ? (PAGE_HTM_DEFAULT) : options['page_htm']
+      headers  = options['headers'].nil?  ? (HEADERS_DEFAULT_STATIC) : options['headers']
+      page_htm = options['page_htm'].nil? ? (PAGE_HTM_DEFAULT)       : options['page_htm']
       
       return [STATUS_DEFAULT, headers, [ IO.read("./#{PATH_VIEW}/#{page_htm}.htm.erb") ]]
 

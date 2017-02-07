@@ -18,8 +18,8 @@ use Rack::Static, :urls => ['/public']
 
 require './config.rb'
 
-require './engine/_RenderPage.rb'
 require './engine/_Environment.rb'
+require './engine/_RenderPage.rb'
 require './engine/_BaseProject.rb'
 
 
@@ -64,19 +64,19 @@ begin
   # RUN def call(env)
     no_route     = true
     request_path = env['REQUEST_PATH']
-    start = MegaController.new env
+    main = MegaController.new env
 
     # > static page
-    return start.index if request_path.match(%r{^/$})
-    return start.admin if request_path.match(%r{^/admin$})
-    return start.user  if request_path.match(%r{^/user$})
+    return main.index if request_path.match(%r{^/$})
+    return main.admin if request_path.match(%r{^/admin$})
+    return main.user  if request_path.match(%r{^/user$})
     # < end static page
     
     #return start.error( start.env.info ) unless start.env.check
 
-    return start.element_add  if request_path.match(%r{^/element_add$})
+    return main.element_add  if request_path.match(%r{^/element_add$})
 
-    return start.error( {:bool => false, :code => 8003, :info => "#{request_path}"} ) if no_route
+    return main.error( {:bool => false, :code => 8003, :info => "#{request_path}"} ) if no_route
   # END end def call(env)
 
 rescue => e
@@ -86,11 +86,11 @@ when /Rendering/
   key, value = hash.first
   case key
   when 'json'
-    return render_page value
+    return render_page(value,main.env)
   when 'file'
-    return render_page(value)
+    return render_page(value,main.env)
   when 'index'
-    return render_page
+    return render_page(hash,main.env)
   else
     return render_page
   end
