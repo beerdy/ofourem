@@ -17,15 +17,16 @@
   };
 
   stdAjax = function(action, params) {
+    params['j'] = 1;
     console.log('send to server:', params);
     return $.ajax({
       type: 'POST',
       url: '/' + action,
-      async: false,
+      async: true,
       contentType: 'application/json; charset=UTF-8',
       data: JSON.stringify(params),
       success: function(s) {
-        return console.log('server asked:', JSON.parse(s));
+        return console.log('server asked:', s);
       },
       beforeSend: function() {}
     });

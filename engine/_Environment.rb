@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 class Environment
+  attr_reader :events
   attr_reader :validator
   attr_reader :form_bool
   attr_reader :json
@@ -22,9 +23,12 @@ class Environment
     @validator = Validator.new @json, @props, @params
   end
 
+  def json?
+    !@json.keys[0].nil?
+  end
   def json
     begin
-      @json = JSON.parse(@rack_input)
+      @json = @rack_input=='' ? {} : JSON.parse(@rack_input)
     rescue => ex
       @json = { :bool => false, :code => 8004, :info => 'Ошибка полученны данных от клиента в формате JSON' }
     end
@@ -39,7 +43,7 @@ end
 
 # FactoryProps
 class Props
-  def initialize
+  def initialize(params)
     @default_props = {
       :hiden => false,
       #:necessarily => true,

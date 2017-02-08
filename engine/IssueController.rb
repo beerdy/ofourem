@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-class DowngradeController
+class IssueController
   def initialize env
     @env = env
   end

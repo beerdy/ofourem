@@ -20,7 +20,7 @@ require './config.rb'
 
 require './engine/_Environment.rb'
 require './engine/_RenderPage.rb'
-require './engine/_BaseProject.rb'
+require './engine/_ControllerInitialize.rb'
 
 
 #===================#
@@ -33,7 +33,7 @@ INCLUDING_PATH.each do |path|
   # Подключим расширяемые модули
   shared = `ls #{SHARED_PATH}/`.split("\n")
   shared.each_with_index do |md,index|
-    if not /^[A-Z][A-Za-z]{1,256}\.rb$/ =~ shared[index]
+    unless /^[A-Z][A-Za-z]{1,256}\.rb$/ =~ shared[index]
       shared.delete(index)
       next
     end  

@@ -8,12 +8,20 @@ module RenderPage
   PAGE_HTM_DEFAULT = "./#{PATH_VIEW}/index.htm.erb"
   HEADERS_DEFAULT_STATIC = {'Content-Type' => 'text/html', 'charset' => 'utf-8'}
 
-  def render_page(options=nil)
-    if options.nil?
-      # По умолчанию index.htm.erb
+  def render_page(options=nil,env)
+    puts "OPTIONS: #{options}, #{env.json?}: #{env.json}"
+    
+    #=========================#
+    # -- Обработка статики -- #
+    #=========================#
+    if options.nil? or options['index'] == true
+
+      # По умолчанию index.htm.erb без данных для рендеринга
+      # Чтобы отрендерить шаблон index с данными необходимо воспользоваться
+      # общей формой рендеринга вида: render :file => { :page_htm => 'index' }
       return [STATUS_DEFAULT, HEADERS_DEFAULT_STATIC, [ IO.read(PAGE_HTM_DEFAULT) ]]
 
-    elsif (options['static']==true or options['page_htm']) and options['data']
+    elsif options['static']==true or options['page_htm']) and options['data']
 
       headers  = options['headers'].nil?  ? (HEADERS_DEFAULT_STATIC) : options['headers']
       page_htm = options['page_htm'].nil? ? (PAGE_HTM_DEFAULT)       : options['page_htm']
@@ -26,9 +34,12 @@ module RenderPage
       page_htm = options['page_htm'].nil? ? (PAGE_HTM_DEFAULT)       : options['page_htm']
       
       return [STATUS_DEFAULT, headers, [ IO.read("./#{PATH_VIEW}/#{page_htm}.htm.erb") ]]
+    end unless env.json?
 
-    elsif options['static'].nil? and options['data']
-
+    #=====================================#
+    # -- В ином случае это AJAX запрос -- #
+    #=====================================#
+    if !options['static']==true and options['data']
       headers = options['headers'].nil? ? (HEADERS_DEFAULT) : options['headers']
 
       return [STATUS_DEFAULT, headers, [ TestDriver.test(options['data']).to_json ]]

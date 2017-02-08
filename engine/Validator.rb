@@ -7,6 +7,7 @@ class Validator
   attr_reader :id
 
   def initialize(json, props, params)
+
     @json   = json
     @props  = props
     @params = params
