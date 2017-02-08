@@ -21,7 +21,7 @@ module RenderPage
       # общей формой рендеринга вида: render :file => { :page_htm => 'index' }
       return [STATUS_DEFAULT, HEADERS_DEFAULT_STATIC, [ IO.read(PAGE_HTM_DEFAULT) ]]
 
-    elsif options['static']==true or options['page_htm']) and options['data']
+    elsif (options['static']==true or options['page_htm']) and options['data']
 
       headers  = options['headers'].nil?  ? (HEADERS_DEFAULT_STATIC) : options['headers']
       page_htm = options['page_htm'].nil? ? (PAGE_HTM_DEFAULT)       : options['page_htm']
