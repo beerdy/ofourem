@@ -10,7 +10,7 @@ class ControllerInitialize
   attr_accessor :downgrade # Откат действий с базой, в том числе и meta
   
   def initialize(environment)
-    @thin = ThinEnv.new(env)
+    @thin = ThinEnv.new(environment)
 
     # валидируем и устанавливаем данные от клиента
     @env = Environment.new environment

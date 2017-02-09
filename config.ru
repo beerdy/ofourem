@@ -1,11 +1,5 @@
 # encoding: UTF-8
 
-require 'rubygems'
-require 'rack'
-require 'json'
-require 'pp'
-require 'erb'
-
 require './lib/deep_struct'
 
 require './options_project'
@@ -18,10 +12,9 @@ use Rack::Static, :urls => ['/public']
 
 require './config.rb'
 
-require './engine/_Environment.rb'
+#require './engine/_Environment.rb'
 require './engine/_RenderPage.rb'
 require './engine/_ControllerInitialize.rb'
-
 
 #===================#
 # -- Mix методов -- #
@@ -82,18 +75,8 @@ begin
 rescue => e
 case e.backtrace[0]
 when /Rendering/
-  hash = JSON.parse e.message
-  key, value = hash.first
-  case key
-  when 'json'
-    return render_page(value,main.env)
-  when 'file'
-    return render_page(value,main.env)
-  when 'index'
-    return render_page(hash,main.env)
-  else
-    return render_page
-  end
+  return render_page( JSON.parse(e.message), main.env) if main.respond_to? :env
+  return render_page( JSON.parse(e.message) )
 when /ANother/
   # Another mixin File
 else

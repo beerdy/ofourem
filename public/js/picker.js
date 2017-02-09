@@ -8,7 +8,7 @@
     element_: function() {
       return this.element = {
         add: function() {
-          return alert('ok');
+          return console.log('opop');
         }
       };
     }

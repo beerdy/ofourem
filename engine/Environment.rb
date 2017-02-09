@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 class Environment
-  attr_reader :events
+  attr_reader :request
   attr_reader :validator
   attr_reader :form_bool
   attr_reader :json
@@ -10,7 +10,7 @@ class Environment
   attr_reader :props
 
   def initialize(environment)
-    request = Rack::Request.new(environment)
+    @request = Rack::Request.new environment
     @rack_input = environment["rack.input"].read
 
     @form_bool = ( @rack_input =~ /form-data/ )
@@ -24,13 +24,15 @@ class Environment
   end
 
   def json?
-    !@json.keys[0].nil?
+    @json.respond_to?(:keys) ? !@json.keys[0].nil? : false 
   end
   def json
+    @rack_input = "fake"
     begin
+      puts "ENVIROMENT- #{@rack_input}"
       @json = @rack_input=='' ? {} : JSON.parse(@rack_input)
     rescue => ex
-      @json = { :bool => false, :code => 8004, :info => 'Ошибка полученны данных от клиента в формате JSON' }
+      render :content => { :page_htm => '404', :data => JSON.parse($o4.tt.error.json.parse) }
     end
   end
 end

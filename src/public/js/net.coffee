@@ -9,7 +9,7 @@ this.net =
       add: () ->
         stdAjax env.client.action, env.client.params
 
-
+console.log 'ready'
 
 # ------------------------------ #
 # -- AJAX to Server by jQuery -- #
@@ -25,6 +25,7 @@ stdAjax = (action, params) ->
     contentType: 'application/json; charset=UTF-8'
     data: JSON.stringify(params)
     success: (s) ->
-      console.log 'server asked:', s
+      console.log 'server asked:','oooo'
+      return
     beforeSend: ->
       # body

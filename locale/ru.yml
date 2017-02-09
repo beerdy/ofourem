@@ -1,0 +1,6 @@
+# encoding: UTF-8
+
+---
+error:
+  json:
+    parse: '{"bool":"false","code":"8004","info":"Ошибка парсинга полученны данных от клиента в формате JSON"}'

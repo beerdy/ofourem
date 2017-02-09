@@ -16,6 +16,8 @@
     }
   };
 
+  console.log('ready');
+
   stdAjax = function(action, params) {
     params['j'] = 1;
     console.log('send to server:', params);
@@ -26,7 +28,7 @@
       contentType: 'application/json; charset=UTF-8',
       data: JSON.stringify(params),
       success: function(s) {
-        return console.log('server asked:', s);
+        console.log('server asked:', 'oooo');
       },
       beforeSend: function() {}
     });
