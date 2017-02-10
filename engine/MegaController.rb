@@ -5,12 +5,13 @@ class MegaController < ControllerInitialize
   # > static page
   def index
     #render_page. тут static
+    puts 'get index'
     render :index => true
   end
- 
+
   def admin
     #render_page. тут static
-    render :file => { :page_htm => 'admin' }
+    render :content => { :page_htm => 'admin' }
   end
  
   def user
@@ -48,6 +49,6 @@ class MegaController < ControllerInitialize
   end
 
   def error(message)
-    render :content => { :page_htm => '404', :data=>{'page_not_found' => message[:info]} }
+    render :content => { :page_htm => 'p404', :data=>{'page_not_found' => message[:info]} }
   end
 end

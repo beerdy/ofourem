@@ -2,6 +2,7 @@
 
 require './lib/deep_struct'
 
+require './template'
 require './options_project'
 require './db_project'
 
@@ -55,28 +56,31 @@ class Application
 begin
 
   # RUN def call(env)
-    no_route     = true
-    request_path = env['REQUEST_PATH']
+    no_route = true
+
+    env['rack_input'] ||= env['rack.input'].read # После считывания env["rack.input"].read кудато проподает (можно потом глянуть - зачем?)
+    env['request'] ||= Rack::Request.new env
+
     main = MegaController.new env
 
     # > static page
-    return main.index if request_path.match(%r{^/$})
-    return main.admin if request_path.match(%r{^/admin$})
-    return main.user  if request_path.match(%r{^/user$})
+    return main.index if env['REQUEST_PATH'].match(%r{^/$})
+    return main.admin if env['REQUEST_PATH'].match %r{^/elementAdd$}
+    return main.user  if env['REQUEST_PATH'].match %r{^/user$}
     # < end static page
     
     #return start.error( start.env.info ) unless start.env.check
 
-    return main.element_add  if request_path.match(%r{^/element_add$})
+    return main.element_add  if env['REQUEST_PATH'].match %r{^/element_add$}
 
-    return main.error( {:bool => false, :code => 8003, :info => "#{request_path}"} ) if no_route
+    return main.error( {:bool => false, :code => 8003, :info => "#{env['REQUEST_PATH']}"} ) if no_route
   # END end def call(env)
 
 rescue => e
 case e.backtrace[0]
 when /Rendering/
-  return render_page( JSON.parse(e.message), main.env) if main.respond_to? :env
-  return render_page( JSON.parse(e.message) )
+  return render_page( JSON.parse(e.message), main.env, env['request'] ) if main.respond_to? :env
+  return render_page( JSON.parse(e.message), nil, env['request'] )
 when /ANother/
   # Another mixin File
 else

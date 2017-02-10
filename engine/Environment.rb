@@ -1,22 +1,22 @@
 # encoding: UTF-8
 
 class Environment
+
   attr_reader :request
+  attr_reader :rack_input
+
   attr_reader :validator
-  attr_reader :form_bool
   attr_reader :json
+  attr_reader :form
 
   attr_reader :params
   attr_reader :props
 
   def initialize(environment)
-    @request = Rack::Request.new environment
-    @rack_input = environment["rack.input"].read
+    puts "initialize"
+    @rack_input = environment['rack_input']
 
-    @form_bool = ( @rack_input =~ /form-data/ )
-
-    # Пока формой не получаем отдаем {}
-    @form_bool ? @json={} : @json=json
+    form
 
     @params    = Params.new
     @props     = Props.new @params
@@ -27,13 +27,21 @@ class Environment
     @json.respond_to?(:keys) ? !@json.keys[0].nil? : false 
   end
   def json
-    @rack_input = "fake"
+    #@rack_input = "fake"
+    puts "ENVIROMENT- #{@rack_input} #{rack_input==''}"
     begin
-      puts "ENVIROMENT- #{@rack_input}"
-      @json = @rack_input=='' ? {} : JSON.parse(@rack_input)
+      @json = @rack_input==nil||@rack_input=='' ? {} : JSON.parse(@rack_input)
     rescue => ex
-      render :content => { :page_htm => '404', :data => JSON.parse($o4.tt.error.json.parse) }
+      render :content => { :page_htm => 'p404', :data => JSON.parse(O4.tt.error.json.parse) }
     end
+  end
+
+  def form?
+    @form_b = @rack_input =~ /form-data/
+  end
+  def form
+    # Пока формой не получаем отдаем {}
+    @form = form? ? {} : json
   end
 end
 

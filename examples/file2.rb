@@ -1,8 +1,17 @@
 class Tt
-	def init
-	end
+  attr_reader :a, :b
+  def initialize
+    @a = 1000
+    @b = 3000
+  end
+
 end
 
-tt = Tt.new()
+t = Tt.new()
 
-p tt.respond_to? :dinit
+def t.h
+  c ||= 'alabama'
+end
+
+p t.h
+p t.h
