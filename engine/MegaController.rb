@@ -20,6 +20,11 @@ class MegaController < ControllerInitialize
   # < end static page
 
   def element_add
+    @downgrade.element_add @env.issue.element_add @meta.element_add ElementAdd.new(@env).insert @is.element_add
+  end
+
+=begin
+  def element_add_
     obj_tags = TagsAdd.new()
     obj_tags.dothis
 
@@ -35,7 +40,7 @@ class MegaController < ControllerInitialize
       :data => @result.data
     })
   end
-
+=end
   def element_read
   end
 

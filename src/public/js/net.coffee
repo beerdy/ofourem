@@ -7,7 +7,10 @@ this.net =
   element_: () ->
     @element = 
       add: () ->
-        stdAjax env.client.action, env.client.params
+        env.client.params['t']='test text'
+        env.client.params['f1']='test filed 1'
+        env.client.params['f2']='test filed 2'
+        stdAjax 'element_add', env.client.params
 
 console.log 'ready'
 

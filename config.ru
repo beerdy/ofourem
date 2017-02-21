@@ -1,7 +1,9 @@
 # encoding: UTF-8
 
+
 require './lib/deep_struct'
 
+require './property'
 require './template'
 require './options_project'
 require './db_project'
@@ -13,7 +15,6 @@ use Rack::Static, :urls => ['/public']
 
 require './config.rb'
 
-#require './engine/_Environment.rb'
 require './engine/_RenderPage.rb'
 require './engine/_ControllerInitialize.rb'
 
@@ -50,7 +51,6 @@ end
 
 class Application
   include RenderPage
-
   def call(env)
 # Переписываем стандартное исключение для всего кода (собственно только на вывод)
 begin
@@ -64,9 +64,9 @@ begin
     main = MegaController.new env
 
     # > static page
-    return main.index if env['REQUEST_PATH'].match(%r{^/$})
-    return main.admin if env['REQUEST_PATH'].match %r{^/elementAdd$}
-    return main.user  if env['REQUEST_PATH'].match %r{^/user$}
+    return main.index       if env['REQUEST_PATH'].match(%r{^/$})
+    return main.element_add if env['REQUEST_PATH'].match %r{^/element_add$}
+    return main.user        if env['REQUEST_PATH'].match %r{^/user$}
     # < end static page
     
     #return start.error( start.env.info ) unless start.env.check

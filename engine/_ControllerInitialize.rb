@@ -12,12 +12,18 @@ class ControllerInitialize
   def initialize(environment)
     @thin = ThinEnv.new(environment)
 
-    # валидируем и устанавливаем данные от клиента
+    # Валидируем и устанавливаем данные от клиента
     @env = Environment.new environment
 
-    # все три контроллера работают с данными клиента которые мы и передаем им
+    # Инициализация в порядке отработки
+    @is = InspectionSet.new @env
+
+    # Результаты доступны везде
+    @env.issue = IssueController.new @env
+
+    # -- TEMP -- Пока не дошел
+    # -> сама модель
     @meta = MetaController.new @env
-    @issue = IssueController.new @env
     @downgrade = DowngradeController.new @env
   end
 end
