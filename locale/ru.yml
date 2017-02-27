@@ -3,19 +3,19 @@
 ---
 error:
   json:
-    parse: {"bool":false,"code":8001,"info":"Ошибка парсинга полученны данных от клиента в формате JSON"}
+    parse: '{"bool":false,"code":8001,"info":"Ошибка парсинга полученны данных от клиента в формате JSON"}'
   inspection:
     element:
       add:
         text:
-          necessarily: {"bool":false,"code":8002,"info":"Ошибка валидации опроса"}
-          nil: {"bool":false,"code":8003,"info":"Ошибка валидации опроса"}
-          max_length: {"bool":false,"code":8004,"info":"Ошибка валидации опроса"}
-          min_length: {"bool":false,"code":8005,"info":"Ошибка валидации опроса"}
+          necessarily: '{"bool":false,"code":8002,"info":"Ошибка валидации опроса"}'
+          nil: '{"bool":false,"code":8003,"info":"Ошибка валидации опроса"}'
+          max_length: '{"bool":false,"code":8004,"info":"Ошибка валидации опроса"}'
+          min_length: '{"bool":false,"code":8005,"info":"Ошибка валидации опроса"}'
         field:
-          min_count: {"bool":false,"code":8005,"info":"Ошибка валидации одного из полей опроса"}
-          max_count: {"bool":false,"code":8006,"info":"Ошибка валидации одного из полей опроса"}
-          max_length: {"bool":false,"code":8007,"info":"Ошибка валидации одного из полей опроса"}
-          min_length: {"bool":false,"code":8008,"info":"Ошибка валидации одного из полей опроса"}
+          min_count: '{"bool":false,"code":8005,"info":"Ошибка валидации одного из полей опроса"}'
+          max_count: '{"bool":false,"code":8006,"info":"Ошибка валидации одного из полей опроса"}'
+          max_length: '{"bool":false,"code":8007,"info":"Ошибка валидации одного из полей опроса"}'
+          min_length: '{"bool":false,"code":8008,"info":"Ошибка валидации одного из полей опроса"}'
 issue:
-  element_add: {"bool":true,"code":9001,"info":"Опрос успешно добавлен"}
+  element_add: '{"bool":true,"code":9001,"info":"Опрос успешно добавлен"}'

@@ -10,10 +10,10 @@
     <script src="public/js/jquery.min.js"></script>
     <script type="text/javascript">
       window.O4 = {
-        property: new Object,
+        pp: new Object,
         tt: new Object,
         init: function () {
-          this.property = <%= @property.to_json %>;
+          this.pp = <%= @pp.to_json %>;
           this.tt = <%= @tt.to_json %>;
         }
       };

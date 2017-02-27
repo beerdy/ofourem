@@ -6,6 +6,7 @@ jQuery(document).ready ->
   controller.init()
   picker.init()
 
-  #console.log JSON.parse(window.O4.tt.issue.element_add)
-
+  alert 'init start'
+  # console.log JSON.parse(window.O4.tt.issue.element_add)
+  alert 'init finish'
   return

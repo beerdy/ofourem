@@ -7,6 +7,8 @@
     net.init();
     controller.init();
     picker.init();
+    alert('init start');
+    alert('init finish');
   });
 
 }).call(this);

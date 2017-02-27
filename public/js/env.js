@@ -11,11 +11,7 @@
       this.client.action = void 0;
       return this.client.params = new Object;
     },
-    element_: function() {
-      return this.element.add = {
-        'c': window.O4.property.element.add.field.min_count
-      };
-    }
+    element_: function() {}
   };
 
 }).call(this);

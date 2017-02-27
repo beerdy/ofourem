@@ -15,7 +15,7 @@ module RenderPage
     #т.е. если post запрос то отдадим json-ом
     type = request.post? ? 'json' : 'file' if type == 'content'
 
-    puts "OPTIONS: #{message} ENV: #{env}, RACK_INPUT: #{request.post?} TYPE #{type}"
+    #puts "OPTIONS: #{message} ENV: #{env}, RACK_INPUT: #{request.post?} TYPE #{type}"
 
     #=========================#
     # -- Обработка статики -- #
@@ -77,10 +77,9 @@ end
 
 class DataBinding
   class << self
-    include Property
     def extend
       {
-        'property' => O4.frontend.property,
+        'pp' => O4.frontend.pp,
         'tt' => O4.frontend.tt
       }
     end
@@ -91,7 +90,7 @@ end
 class BindPage
   def initialize(data)
     data.each do |key,value|
-      puts "KEY: #{key}, VALUE: #{value}"
+      #puts "KEY: #{key}, VALUE: #{value}"
       instance_variable_set('@'+key, value)
     end
   end

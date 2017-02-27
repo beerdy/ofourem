@@ -3,8 +3,8 @@
 
 require './lib/deep_struct'
 
-require './property'
 require './template'
+require './property'
 require './options_project'
 require './db_project'
 
