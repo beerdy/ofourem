@@ -6,7 +6,7 @@ class MetaController
   end
 
   def element_add meta
-    puts "Result bool: #{meta.ok?} with ID #{meta.inserted_id}"
-    #puts "Meta element_add: #{meta.methods.sort}"
+    puts "No meta for added element: #{meta}"
+    return meta
   end
 end

@@ -8,7 +8,8 @@ class IssueController
   end
 
   def element_add issue
-    puts "Issue>>: #{issue}. Element added."
+    # puts "Meta element_add: #{meta.methods.sort}"
+    puts "Element added - #{issue.ok?}: ID #{issue.inserted_id}"
     r O4.tt.issue.element_add
   end
 end
