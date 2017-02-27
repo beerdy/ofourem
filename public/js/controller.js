@@ -8,8 +8,9 @@
     element_: function() {
       return this.element = {
         add: function() {
-          picker.element.add();
-          return net.element.add();
+          if (inspection.element.add()) {
+            return net.element.add();
+          }
         }
       };
     }

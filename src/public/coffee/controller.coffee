@@ -7,5 +7,4 @@ this.controller =
   element_: () ->
     @element = 
       add: () ->
-        picker.element.add()
-        net.element.add()
+        net.element.add() if inspection.element.add()
