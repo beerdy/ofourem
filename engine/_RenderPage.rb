@@ -5,7 +5,6 @@ HEADERS_DEFAULT = { 'Content-Type' => 'text/plain', 'charset' => 'utf-8' }
 PAGE_HTM_DEFAULT = O4.template.page.index #"./#{PATH_VIEW}/index.htm.erb"
 HEADERS_DEFAULT_STATIC = {'Content-Type' => 'text/html', 'charset' => 'utf-8'}
 
-
 module RenderPage
   # Всегда пока 200
 
@@ -26,28 +25,27 @@ module RenderPage
       # Чтобы отрендерить шаблон index с данными необходимо воспользоваться
       # общей формой рендеринга вида: render :file => { :page_htm => 'index' }
       # puts "INDEX: #{O4.template.page.index}"
-      return [STATUS_DEFAULT, HEADERS_DEFAULT_STATIC, [ PAGE_HTM_DEFAULT ]]
+      return [STATUS_DEFAULT, HEADERS_DEFAULT_STATIC, [ ERB.new(PAGE_HTM_DEFAULT).result( BindPage.new( TestDriver.test( DataBinding.extend )).bind ) ]]
     end
 
     if options['data']
-
       headers  = options['headers'].nil?  ? (HEADERS_DEFAULT_STATIC) : options['headers']
       page_htm = options['page_htm'].nil? ? (PAGE_HTM_DEFAULT)       : options['page_htm']
-      return [STATUS_DEFAULT, headers, [ ERB.new(O4.template.page.instance_eval "#{page_htm}").result( BindPage.new( TestDriver.test(options['data']) ).bind ) ]]
+      return [STATUS_DEFAULT, headers, [ ERB.new(O4.template.page.instance_eval "#{page_htm}").result( BindPage.new( TestDriver.test(options['data'].merge( DataBinding.extend )) ).bind ) ]]
 
     elsif env.json?
 
       headers  = options['headers'].nil?  ? (HEADERS_DEFAULT_STATIC) : options['headers']
       page_htm = options['page_htm'].nil? ? (PAGE_HTM_DEFAULT)       : options['page_htm']
 
-      return [STATUS_DEFAULT, headers, [ ERB.new(O4.template.page.instance_eval "#{page_htm}").result( BindPage.new( TestDriver.test(env.json) ).bind ) ]]
+      return [STATUS_DEFAULT, headers, [ ERB.new(O4.template.page.instance_eval "#{page_htm}").result( BindPage.new( TestDriver.test(env.json.merge( DataBinding.extend )) ).bind ) ]]
 
     else
 
       headers  = options['headers'].nil?  ? (HEADERS_DEFAULT_STATIC) : options['headers']
       page_htm = options['page_htm'].nil? ? (PAGE_HTM_DEFAULT)       : options['page_htm']
       
-      return [STATUS_DEFAULT, headers, [ IO.read("./#{PATH_VIEW}/#{page_htm}.htm.erb",:encoding => 'UTF-8') ]]
+      return [STATUS_DEFAULT, headers, [ ERB.new(O4.template.page.instance_eval "#{page_htm}").result( BindPage.new( TestDriver.test( DataBinding.extend )).bind ) ]]
     end if type=='file' or type=='content'
 
     #=====================================#
@@ -76,6 +74,18 @@ module RenderPage
   module_function :render_page
 end
 
+
+class DataBinding
+  class << self
+    include Property
+    def extend
+      {
+        'property' => property('frontend')
+      }
+    end
+  end
+end
+
 # Биндинг одноуровневый уровень вложенности
 class BindPage
   def initialize(data)
@@ -84,7 +94,12 @@ class BindPage
       instance_variable_set('@'+key, value)
     end
   end
+
   def bind
     binding
   end
 end
+
+
+
+

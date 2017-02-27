@@ -1,8 +1,18 @@
 # encoding: UTF-8
 
-module Property
-  def property
-    DeepStruct.new({
+module Property 
+  def property(type='backend')
+    case type
+    when 'frontend'
+      property_in_json
+    when 'backend'
+      DeepStruct.new(property_in_json)
+    end
+  end
+
+##improvise design private type
+  def property_in_json
+    {
       :element => {
         :add => {
           :text => {
@@ -18,6 +28,7 @@ module Property
           }
         }
       }
-    })
+    }
   end
+
 end

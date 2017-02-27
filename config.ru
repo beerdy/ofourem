@@ -68,10 +68,10 @@ begin
     return main.element_add if env['REQUEST_PATH'].match %r{^/element_add$}
     return main.user        if env['REQUEST_PATH'].match %r{^/user$}
     # < end static page
+
+    return main.property_frontend if env['REQUEST_PATH'].match %r{^/property_frontend$}
     
     #return start.error( start.env.info ) unless start.env.check
-
-    return main.element_add  if env['REQUEST_PATH'].match %r{^/element_add$}
 
     return main.error( {:bool => false, :code => 8003, :info => "#{env['REQUEST_PATH']}"} ) if no_route
   # END end def call(env)
