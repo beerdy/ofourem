@@ -10,6 +10,6 @@ this.env =
     @client.params = new Object
 
   element_: () ->
-    #@element.add = {
-    #  'c': window.O4.property.element.add.field.min_count
-    #}
+    @element.add = {
+      'c': window.O4.pp.element.add.field.min_count
+    }

@@ -11,7 +11,11 @@
       this.client.action = void 0;
       return this.client.params = new Object;
     },
-    element_: function() {}
+    element_: function() {
+      return this.element.add = {
+        'c': window.O4.pp.element.add.field.min_count
+      };
+    }
   };
 
 }).call(this);
