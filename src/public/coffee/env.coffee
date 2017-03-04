@@ -5,13 +5,13 @@ this.env =
   init: (argument) ->
     @client_()
     @element_()
-
   client_: () ->
     @client.action = undefined
     @client.params = new Object
 
   element_: () ->
-    @element =
-      add: new Object
+    @element.add = {
+      'c': window.O4.property.element.add.field.min_count
+    }
       
 

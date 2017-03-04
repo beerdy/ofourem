@@ -11,10 +11,12 @@
     <script type="text/javascript">
       window.O4 = {
         property: new Object,
+        tt: new Object,
         init: function () {
           this.property = <%= @property.to_json %>;
+          this.tt = <%= @tt.to_json %>;
         }
-      }
+      };
     </script>
     <script src="public/js/fabric.js"></script>
     <script src="public/js/env.js"></script>
@@ -32,11 +34,11 @@
 
     <div id="elementAddContainer">
       <h5>Добавление опроса</h5>
-      Тест опроса: <textarea></textarea><button id="elementAdd" onclick="return navigate.id(this)">Опросить</button><br>
+      Тест опроса: <textarea id="t1"></textarea><button id="elementAdd" onclick="return navigate.id(this)">Опросить</button><br>
       Варианты опроса:  
       <ol class="variantsList">
-        <li><input id="variantItem1"></input></li>
-        <li><input id="variantItem2"></input></li>
+        <li><input id="f1"></input></li>
+        <li><input id="f2"></input></li>
       </ol>
       <button id="appendVariantItem" onclick="return navigate.id(this)">Добавить вариант</button>
     </div>

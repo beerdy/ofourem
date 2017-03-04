@@ -8,7 +8,14 @@
     element_: function() {
       return this.element = {
         add: function() {
-          return console.log('opop');
+          var element_obj, field, i, j, ref;
+          env.element.add['t1'] = document.getElementById('t1').value;
+          for (i = j = 1, ref = env.element.add.c; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
+            field = 'f' + i;
+            element_obj = document.getElementById(field);
+            env.element.add[field] = element_obj.value;
+          }
+          return console.log('pick element add complete');
         }
       };
     }

@@ -80,7 +80,8 @@ class DataBinding
     include Property
     def extend
       {
-        'property' => property('frontend')
+        'property' => O4.frontend.property,
+        'tt' => O4.frontend.tt
       }
     end
   end

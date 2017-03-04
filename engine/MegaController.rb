@@ -20,7 +20,7 @@ class MegaController < ControllerInitialize
   # < end static page
 
   def element_add
-    @downgrade.element_add @env.issue.element_add @meta.element_add ElementAdd.new(@env).insert @is.element_add
+    @env.issue.element_add @meta.element_add ElementAdd.new(@env).insert @is.element_add
   end
 
 =begin

@@ -11,11 +11,11 @@ class InspectionSet
     #puts "tt--: #{O4.tt}"
     #puts "auth--: #{O4.auth}"
 
-    r O4.tt.error.inspection.element.add.text.nil unless @env.json['t']
-    length = @env.json['t'].length
+    r O4.tt.error.inspection.element.add.text.nil unless @env.json['t1']
+    length = @env.json['t1'].length
     r O4.tt.error.inspection.element.add.text.max_length if length > O4.property.element.add.text.max_length
     r O4.tt.error.inspection.element.add.text.min_length if length < O4.property.element.add.text.min_length
-    @env.issue.element_add = { :t=>@env.json['t'] }.merge! field
+    @env.issue.element_add = { :t1=>@env.json['t1'] }.merge! field
   end
   def field
     fields = {}

@@ -10,16 +10,11 @@
     element_: function() {
       return this.element = {
         add: function() {
-          env.client.params['t'] = 'test text';
-          env.client.params['f1'] = 'test filed 1';
-          env.client.params['f2'] = 'test filed 2';
-          return stdAjax('element_add', env.client.params);
+          return stdAjax('element_add', env.element.add);
         }
       };
     }
   };
-
-  console.log('ready');
 
   stdAjax = function(action, params) {
     params['j'] = 1;
@@ -31,7 +26,7 @@
       contentType: 'application/json; charset=UTF-8',
       data: JSON.stringify(params),
       success: function(s) {
-        console.log('server asked:', 'oooo');
+        console.log('server asked:', 'foooo');
       },
       beforeSend: function() {}
     });

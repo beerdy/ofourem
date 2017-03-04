@@ -7,12 +7,7 @@ this.net =
   element_: () ->
     @element = 
       add: () ->
-        env.client.params['t']='test text'
-        env.client.params['f1']='test filed 1'
-        env.client.params['f2']='test filed 2'
-        stdAjax 'element_add', env.client.params
-
-console.log 'ready'
+        stdAjax 'element_add', env.element.add
 
 # ------------------------------ #
 # -- AJAX to Server by jQuery -- #
@@ -28,7 +23,7 @@ stdAjax = (action, params) ->
     contentType: 'application/json; charset=UTF-8'
     data: JSON.stringify(params)
     success: (s) ->
-      console.log 'server asked:','oooo'
+      console.log 'server asked:','foooo'
       return
     beforeSend: ->
       # body
