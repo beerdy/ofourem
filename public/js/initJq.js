@@ -4,11 +4,11 @@
     O4.init();
     ui.init();
     env.init();
+    error.init();
     net.init();
     controller.init();
-    picker.init();
-    alert('init start');
-    alert('init finish');
+    inspection.init();
+    console.log('!!!INIT OK!!!');
   });
 
 }).call(this);

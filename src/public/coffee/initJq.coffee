@@ -2,11 +2,11 @@ jQuery(document).ready ->
   O4.init()
   ui.init()
   env.init()
+  error.init()
   net.init()
   controller.init()
-  picker.init()
+  inspection.init()
 
-  alert 'init start'
   # console.log JSON.parse(window.O4.tt.issue.element_add)
-  alert 'init finish'
+  console.log '!!!INIT OK!!!'
   return
