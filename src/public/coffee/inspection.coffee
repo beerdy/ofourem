@@ -6,22 +6,31 @@ this.inspection =
 
   element_: () ->
     @element =
+      listen: new Object,
       add: () ->
-        listen |= JSON.parse JSON.stringify(window.O4.pp.element.add)
+        @listen |= JSON.parse JSON.stringify(window.O4.pp.element.add)
         
         obj = document.getElementById 't1'
-        
-        value = obj.value
-        length = value.length
-        #console.log 'min_length', length, window.O4.pp.element.add.text.min_length
+  
+        @listen.params = (obj) ->
+          value = obj.value
+          length = value.length
+          #console.log 'min_length', length, window.O4.pp.element.add.text.min_length
 
-        if length < window.O4.pp.element.add.text.min_length
-          error.element.add.text.min_length obj, true
-          return false
+        @listen.text.min_length = () ->
+          if length < window.O4.pp.element.add.text.min_length
+            error.element.add.text.min_length obj, true
+            
+            return false
 
-        if length > window.O4.pp.element.add.text.max_length
-          error.element.add.text.max_length obj, true
-          return false
+        @listen.text.max_length = () ->
+          if length > window.O4.pp.element.add.text.max_length
+            error.element.add.text.max_length obj, true
+            return false
+
+
+
+
 
         env.element.add['t1'] = value
         

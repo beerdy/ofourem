@@ -12,7 +12,7 @@ this.error =
 
     #2. превратим в фкнуцию конечное свойство объекта
     @element.add.text.min_length = (obj,bool) ->
-      if bool then obj.className+=" error1" else obj.className+=" "
+      if bool then obj.className += " error1" else obj.className=" "
       console.log bool
       console.log obj
     @element.add.text.max_length = (obj,bool) ->
