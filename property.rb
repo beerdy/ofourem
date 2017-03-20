@@ -17,14 +17,11 @@ module Property
         :add => {
           :text => {
             :necessarily => true,
-            :max_length => 264,
-            :min_length => 3
+            :range_length => [3,7]#[3,264]
           },  
           :field => {
-            :min_count => 2,
-            :max_count => 5,
-            :max_length => 50,
-            :min_length => 1
+            :range_count => [2,5],
+            :range_length => [1,50]
           }
         }
       }

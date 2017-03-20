@@ -13,41 +13,35 @@ this.listen =
       #pp: window.O4.pp.element.add # Так же ссылкой
 
       add: () ->
-        dothis = (obj,variable,value) ->
-          if state.element.add[variable][value]==false
-            if inspector.element.add[variable][value](obj)==false
-              state.element.add[variable][value] = true
-              
-              _listner = () ->
-                if inspector.element.add[variable][value] this
-                  this.removeEventListener 'keyup', _listner, false
+        obj = document.getElementById 't1'
 
-                  state.element.add[variable][value] = false
-
-                  console.log 'remove - inspector.element.add.text.min_length listner'
-              console.log 'add - inspector.element.add.text.min_length listner'
-
-              obj.addEventListener 'keyup', _listner, false
-              return false
-          else
-            return true
+        if state.element.add.text.range_length==false and inspector.element.add.text.range_length(obj)==false
+          state.element.add.text.range_length = true
+          error.element.add.text.range_length obj, true
+          
+          _func = () ->
+            if inspector.element.add.text.range_length this
+              this.removeEventListener 'keyup', _func, false
+              state.element.add.text.range_length = false
+              error.element.add.text.range_length this, false
+              console.log 'remove - inspector.element.add.text.range_length listner'
+          
+          console.log 'add - inspector.element.add.text.range_length listner'
+          obj.addEventListener 'keyup', _func, false
           
 
-        obj = document.getElementById 't1'
         
-        dothis(obj, 'text', 'max_length')
-        dothis( obj, 'text', 'min_length')
         
 
         ###
         if state.element.add.text.max_length==false and inspector.element.add.text.max_length(obj)==false
           state.element.add.text.max_length = true
           
-          _listner = () ->
+          _func = () ->
             if inspector.element.add.text.max_length this
-              this.removeEventListener 'keyup', _listner, false
+              this.removeEventListener 'keyup', _func, false
               state.element.add.text.max_length = false
-          obj.addEventListener 'keyup', _listner, false
+          obj.addEventListener 'keyup', _func, false
           return false
 
         env.element.add['t1'] = obj.value
@@ -61,13 +55,13 @@ this.listen =
           if state.element.add.field.min_length==false and inspector.element.add.field.min_length(obj)==false
             state.element.add.field.min_length = true
 
-            _listner = () ->
+            _func = () ->
               if inspector.element.add.field.min_length this
-                this.removeEventListener 'keyup', _listner, false
+                this.removeEventListener 'keyup', _func, false
                 state.element.add.field.min_length = false
                 console.log 'remove - inspector.element.add.field.min_length listner'
             console.log 'add - inspector.element.add.field.min_length listner'
-            obj.addEventListener 'keyup', _listner, false
+            obj.addEventListener 'keyup', _func, false
             return false
 
             if length > @pp.field.max_length

@@ -12,5 +12,5 @@ this.env =
 
   element_: () ->
     @element.add = {
-      'c': window.O4.pp.element.add.field.min_count
+      'c': window.O4.pp.element.add.field.range_count[0]
     }

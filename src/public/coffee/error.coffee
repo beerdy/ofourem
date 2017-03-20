@@ -3,7 +3,6 @@ this.error =
 
   init: () ->
     @element_()
-    #@element.add.text.min_length('obj')
   element_: () ->
     # Задача превратить в фкнуцию конечное свойство объекта 
 
@@ -11,29 +10,14 @@ this.error =
     @element = JSON.parse JSON.stringify(window.O4.pp.element)
 
     #2. превратим в фкнуцию конечное свойство объекта
-    @element.add.text.min_length = (obj,bool) ->
-      console.log 'bool error min',bool
-      console.log 'error min' if bool
-      if bool then obj.className += " error1" else obj.className=" "
-    @element.add.text.max_length = (obj,bool) ->
-      console.log 'bool error max',bool
-      console.log 'error max' if bool
-      if bool then obj.className += " error2" else obj.className=" "
-    @element.add.text.min_count = (obj,bool) ->
-      console.log obj
-    @element.add.text.max_count = (obj,bool) ->
-      console.log obj
+    @element.add.text.range_length = (obj,bool) ->
+      console.log 'bool error range_length:', bool
+      if bool
+        obj.className += " error1"
+      else
+        obj.className = " "
 
-    @element.add.field.min_length = (obj,bool) ->
-      if bool then obj.className += " error1" else obj.className=" "
-    @element.add.field.max_length = (obj,bool) ->
+    @element.add.field.range_count = (obj,bool) ->
+      console.log 'range_count',bool
+    @element.add.field.range_length = (obj,bool) ->
       console.log obj
-    @element.add.field.min_count = (obj,bool) ->
-      console.log obj
-    @element.add.field.max_count = (obj,bool) ->
-      console.log obj
-
-
-
-    #@element = window.O4.tt.error.inspection
-    #console.log @element_tt
