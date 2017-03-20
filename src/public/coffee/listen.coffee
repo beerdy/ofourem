@@ -15,17 +15,21 @@ this.listen =
       add: () ->
         console.log '@state:', @state
 
-        unless @state.text.min_length
-          alert 'no state' 
-        
         obj = document.getElementById 't1'
         value = obj.value
         length = value.length
 
-        unless @inspector.text.min_length length, @pp.text.min_length
+        unless @state.text.min_length and @inspector.text.min_length length, @pp.text.min_length
+          obj.addEventListener 'keyup', (() ->
+            #some codde
+            console.log 'some actions'
+            return
+          ), false
+
           @error.text.min_length obj, true
           return false
 
+        ####
         if length > @pp.text.max_length
           @error.text.max_length obj, true
           return false
