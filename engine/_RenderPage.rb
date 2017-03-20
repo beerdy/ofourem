@@ -80,7 +80,8 @@ class DataBinding
     def extend
       {
         'pp' => O4.frontend.pp,
-        'tt' => O4.frontend.tt
+        'tt' => O4.frontend.tt,
+        'pp_backend' => O4.pp
       }
     end
   end

@@ -11,6 +11,14 @@
           if (picker.element.add()) {
             return net.element.add();
           }
+        },
+        field: {
+          append: function() {
+            var obj;
+            env.element.add.field.c += 1;
+            obj = document.getElementById('style--' + window.O4.pp.element.add.field.id_prefix + env.element.add.field.c);
+            return obj.style.display = 'list-item';
+          }
         }
       };
     }

@@ -17,11 +17,13 @@ module Property
         :add => {
           # struct
           :text => {
+            :id => 't1',
             :necessarily => true,
             :range_length => [3,7]#[3,264]
           },
           # struct
           :field => {
+            :id_prefix => 'f',
             :range_count => [3,5],
             :range_length => [1,50]
           }

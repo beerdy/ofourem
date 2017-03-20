@@ -1,3 +1,4 @@
+###
 jQuery(document).ready ->
   O4.init()
   ui.init()
@@ -16,3 +17,4 @@ jQuery(document).ready ->
 
   console.log '!!!INIT OK!!!'
   return
+###

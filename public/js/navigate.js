@@ -3,15 +3,15 @@
   this.navigate = {
     init: function(argument) {},
     id: function(it) {
-      var action;
-      action = it.getAttribute('id');
+      env.client.action = it.getAttribute('id');
       window.location.hash = '';
-      switch (action) {
-        case 'showElementAdd':
+      switch (env.client.action) {
+        case 'elementAddShow':
           return ui.elementAdd.show();
         case 'elementAdd':
-          env.client.action = action;
           return controller.element.add();
+        case 'elementFieldAppend':
+          return controller.element.field.append();
         default:
           break;
       }

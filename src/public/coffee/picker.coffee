@@ -11,7 +11,7 @@ this.picker =
     @element = 
       add: () ->
         if inspector.element.add.field.range_count==false
-          #console.log 'Inspection COUNT>>> element add: -=FALSE see error validation=-'
+          console.log 'Inspection count field >>> element add: -=FALSE see error validation=-'
           error.element.add.field.range_count true
           return false
 
@@ -34,9 +34,9 @@ this.picker =
           for s,o of options
             for k,v of state.element.add[s].range_length
               if v
-                #console.log 'Inspection STRUCT>>> element add: -=FALSE see error validation=-'
+                console.log 'Inspection STRUCT>>> element add: -=FALSE see error validation=-'
                 return false
-          #console.log 'Inspection>>> element add: -=TRUE=-'
+          console.log 'Inspection>>> element add: -=TRUE=-'
 
         # Inspect elements
         doInspect options.text.id, 'text', document.getElementById options.text.id
@@ -44,6 +44,7 @@ this.picker =
         for i in [1..env.element.add.field.c]
           inspected = options.field.idPrefix+i
           obj = document.getElementById inspected
+          break if obj==null
           doInspect inspected, 'field', obj
         
         # Check validate

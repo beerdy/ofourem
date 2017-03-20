@@ -5,13 +5,15 @@ this.navigate =
     # body...
     return
   id: (it) ->
-    action = it.getAttribute 'id'
+    env.client.action = it.getAttribute 'id'
     window.location.hash = ''
-    switch action
-      when 'showElementAdd'
+    switch env.client.action
+      when 'elementAddShow'
         ui.elementAdd.show()
       when 'elementAdd'
-        env.client.action = action
         controller.element.add()
+      when 'elementFieldAppend'
+        controller.element.field.append()
+
       else
         break
