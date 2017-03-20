@@ -11,13 +11,17 @@ this.error =
 
     #2. превратим в фкнуцию конечное свойство объекта
     @element.add.text.range_length = (obj,bool) ->
-      console.log 'bool error range_length:', bool
+      console.log 'error text range_length:', bool
       if bool
         obj.className += " error1"
       else
         obj.className = " "
 
     @element.add.field.range_count = (obj,bool) ->
-      console.log 'range_count',bool
-    @element.add.field.range_length = (obj,bool) ->
       console.log obj
+    @element.add.field.range_length = (obj,bool) ->
+      console.log 'error field range_length:', bool
+      if bool
+        obj.className += " error1"
+      else
+        obj.className = " "

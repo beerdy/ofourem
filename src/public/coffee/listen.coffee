@@ -7,6 +7,7 @@ this.listen =
 
   element_: () ->
     @element = 
+      tmp: new Object
       #state: state.element.add
       #error: error.element.add # Ссылкой
       #inspector: inspector.element.add
@@ -18,18 +19,34 @@ this.listen =
         if state.element.add.text.range_length==false and inspector.element.add.text.range_length(obj)==false
           state.element.add.text.range_length = true
           error.element.add.text.range_length obj, true
-          
-          _func = () ->
-            if inspector.element.add.text.range_length this
-              this.removeEventListener 'keyup', _func, false
-              state.element.add.text.range_length = false
-              error.element.add.text.range_length this, false
-              console.log 'remove - inspector.element.add.text.range_length listner'
+          @tmp = 
+            _func: () ->
+              if inspector.element.add.text.range_length this
+                this.removeEventListener 'keyup', _func, false
+                state.element.add.text.range_length = false
+                error.element.add.text.range_length this, false
+                console.log 'remove - inspector.element.add.text.range_length listner' 
           
           console.log 'add - inspector.element.add.text.range_length listner'
-          obj.addEventListener 'keyup', _func, false
+          obj.addEventListener 'keyup', @tmp._func, false
+          delete @tmp._func
           
+        for i in [1..env.element.add.c]
 
+          field = 'f'+i
+          obj = document.getElementById field
+          
+          if state.element.add.field.range_length==false and inspector.element.add.field.range_length(obj)==false
+            state.element.add.field.range_length = true
+            error.element.add.field.range_length obj, true
+            @tmp =
+              _func: () ->
+                if inspector.element.add.field.range_length this
+                  this.removeEventListener 'keyup', _func, false
+                  state.element.add.field.range_length = false
+                  error.element.add.field.range_length this, false
+            obj.addEventListener 'keyup', @tmp._func, false
+            delete @tmp._func
         
         
 

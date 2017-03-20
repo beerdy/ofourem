@@ -18,7 +18,8 @@ this.inspector =
     @element.add.field.range_count = (obj) ->
       console.log obj
     @element.add.field.range_length = (obj) ->
-      console.log obj
+      return false if obj.value.length < window.O4.pp.element.add.field.range_length[0] or obj.value.length > window.O4.pp.element.add.field.range_length[1]
+      return true
 
 
     #@element = window.O4.tt.error.inspection
