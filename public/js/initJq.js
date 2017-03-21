@@ -4,10 +4,12 @@
     O4.init();
     ui.init();
     env.init();
+    state.init();
     error.init();
-    net.init();
+    inspector.init();
     controller.init();
-    inspection.init();
+    net.init();
+    listen.init();
     console.log('!!!INIT OK!!!');
   });
 
