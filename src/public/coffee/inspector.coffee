@@ -25,6 +25,8 @@ this.inspector =
       else 
         error.element.add.text.max_length obj, false
         return true
+
+
     @element.add.text.min_count = (obj,bool) ->
       console.log obj
     @element.add.text.max_count = (obj,bool) ->
