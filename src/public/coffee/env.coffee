@@ -5,6 +5,7 @@ this.env =
   init: (argument) ->
     @client_()
     @element_()
+  
   client_: () ->
     @client.action = undefined
     @client.params = new Object

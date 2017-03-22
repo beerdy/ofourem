@@ -18,7 +18,7 @@ module Property
           :text => {
             :necessarily => true,
             :max_length => 264,
-            :min_length => 2
+            :min_length => 3
           },  
           :field => {
             :min_count => 2,

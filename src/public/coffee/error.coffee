@@ -13,17 +13,15 @@ this.error =
     #2. превратим в фкнуцию конечное свойство объекта
     @element.add.text.min_length = (obj,bool) ->
       if bool then obj.className += " error1" else obj.className=" "
-      console.log bool
-      console.log obj
     @element.add.text.max_length = (obj,bool) ->
-      console.log obj
+      if bool then obj.className += " error1" else obj.className=" "
     @element.add.text.min_count = (obj,bool) ->
       console.log obj
     @element.add.text.max_count = (obj,bool) ->
       console.log obj
 
     @element.add.field.min_length = (obj,bool) ->
-      console.log obj
+      if bool then obj.className += " error1" else obj.className=" "
     @element.add.field.max_length = (obj,bool) ->
       console.log obj
     @element.add.field.min_count = (obj,bool) ->
