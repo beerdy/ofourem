@@ -15,10 +15,12 @@ module Property
     {
       :element => {
         :add => {
+          # struct
           :text => {
             :necessarily => true,
             :range_length => [3,7]#[3,264]
-          },  
+          },
+          # struct
           :field => {
             :range_count => [2,5],
             :range_length => [1,50]

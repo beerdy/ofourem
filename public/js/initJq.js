@@ -9,7 +9,16 @@
     inspector.init();
     controller.init();
     net.init();
-    listen.init();
+    listen.init({
+      'text': {
+        'struct': 'text',
+        'id': 't1'
+      },
+      'field': {
+        'struct': 'field',
+        'idPrefix': 'f'
+      }
+    });
     console.log('!!!INIT OK!!!');
   });
 

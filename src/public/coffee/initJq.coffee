@@ -7,8 +7,14 @@ jQuery(document).ready ->
   inspector.init()
   controller.init()
   net.init()
-  listen.init()
 
-  # console.log JSON.parse(window.O4.tt.issue.element_add)
+  listen.init
+    'text': 
+      'struct':'text'
+      'id':'t1'
+    'field':
+      'struct':'field'
+      'idPrefix':'f'
+
   console.log '!!!INIT OK!!!'
   return

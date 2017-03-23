@@ -11,6 +11,7 @@ this.state =
 
     #2. превратим в фкнуцию конечное свойство объекта
     @element.add.text.range_length = false
-    @element.add.field.range_count = false
-    @element.add.field.range_length = false
+    @element.add.text.range_length = new Object
 
+    @element.add.field.range_count = false
+    @element.add.field.range_length = new Object
