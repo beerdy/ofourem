@@ -8,7 +8,7 @@ jQuery(document).ready ->
   controller.init()
   net.init()
 
-  listen.init
+  picker.init
     'text': 
       'id':'t1'
     'field':

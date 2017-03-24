@@ -8,7 +8,7 @@
     element_: function() {
       return this.element = {
         add: function() {
-          if (listen.element.add()) {
+          if (picker.element.add()) {
             return net.element.add();
           }
         }

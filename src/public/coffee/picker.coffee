@@ -1,4 +1,4 @@
-this.listen = 
+this.picker = 
 
   element: new Object
  
@@ -10,6 +10,11 @@ this.listen =
 
     @element = 
       add: () ->
+        if inspector.element.add.field.range_count==false
+          #console.log 'Inspection COUNT>>> element add: -=FALSE see error validation=-'
+          error.element.add.field.range_count true
+          return false
+
         makeListner = (nameFunc,property,parameter) ->
           console.log 'SET Listner'
           @[nameFunc] = ->
@@ -20,7 +25,7 @@ this.listen =
 
         doInspect = (inspected,struct,obj)->
           if (state.element.add[struct].range_length[inspected]==false or state.element.add[struct].range_length[inspected]==undefined) and inspector.element.add[struct].range_length(obj)==false
-            makeListner inspected, struct, 'range_length' if state.element.add[struct].range_length[inspected]==undefined # Если не создан
+            makeListner inspected, struct, 'range_length' if state.element.add[struct].range_length[inspected]==undefined # Если функция прослушивания не существует - создадим ее
             obj.addEventListener 'keyup', window[inspected], false
             state.element.add[struct].range_length[inspected] = true
             error.element.add[struct].range_length obj, true
@@ -28,8 +33,11 @@ this.listen =
         checkState = (options) ->
           for s,o of options
             for k,v of state.element.add[s].range_length
-              return false if v
-        
+              if v
+                #console.log 'Inspection STRUCT>>> element add: -=FALSE see error validation=-'
+                return false
+          #console.log 'Inspection>>> element add: -=TRUE=-'
+
         # Inspect elements
         doInspect options.text.id, 'text', document.getElementById options.text.id
 
@@ -39,7 +47,4 @@ this.listen =
           doInspect inspected, 'field', obj
         
         # Check validate
-        return checkState(options)
-
-        console.log 'Inspection>>> element add: -=TRUE=-'
-        return true
+        return checkState options

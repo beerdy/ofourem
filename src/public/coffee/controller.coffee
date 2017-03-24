@@ -7,4 +7,4 @@ this.controller =
   element_: () ->
     @element = 
       add: () ->
-        net.element.add() if listen.element.add()
+        net.element.add() if picker.element.add()

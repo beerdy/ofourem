@@ -9,7 +9,7 @@
     inspector.init();
     controller.init();
     net.init();
-    listen.init({
+    picker.init({
       'text': {
         'id': 't1'
       },

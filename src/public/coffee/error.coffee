@@ -18,7 +18,7 @@ this.error =
         obj.className = " "
 
     @element.add.field.range_count = (obj,bool) ->
-      console.log obj
+      console.log 'error field range_count:', bool
     @element.add.field.range_length = (obj,bool) ->
       console.log 'error field range_length:', bool
       if bool
