@@ -11,11 +11,9 @@
     net.init();
     listen.init({
       'text': {
-        'struct': 'text',
         'id': 't1'
       },
       'field': {
-        'struct': 'field',
         'idPrefix': 'f'
       }
     });

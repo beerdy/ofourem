@@ -11,6 +11,6 @@ this.env =
     @client.params = new Object
 
   element_: () ->
-    @element.add = {
-      'c': window.O4.pp.element.add.field.range_count[0]
-    }
+    @element.add =
+      'field':
+        'c':window.O4.pp.element.add.field.range_count[0]

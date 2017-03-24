@@ -13,7 +13,7 @@ class InspectionSet
 
     r O4.tt.error.inspection.element.add.text.nil unless @env.json['t1']
     length = @env.json['t1'].length
-     puts "PROPS: #{O4.pp}"
+    puts "PROPS: #{O4.pp}"
     r O4.tt.error.inspection.element.add.text.max_length if length > O4.pp.element.add.text.max_length
     r O4.tt.error.inspection.element.add.text.min_length if length < O4.pp.element.add.text.min_length
     @env.issue.element_add = { :t1=>@env.json['t1'] }.merge! field

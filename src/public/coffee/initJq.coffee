@@ -10,10 +10,8 @@ jQuery(document).ready ->
 
   listen.init
     'text': 
-      'struct':'text'
       'id':'t1'
     'field':
-      'struct':'field'
       'idPrefix':'f'
 
   console.log '!!!INIT OK!!!'

@@ -10,28 +10,36 @@ this.listen =
 
     @element = 
       add: () ->
-        setListner = (nameFunc,property,parameter) ->
+        makeListner = (nameFunc,property,parameter) ->
+          console.log 'SET Listner'
           @[nameFunc] = ->
             if inspector.element.add[property][parameter] this
               this.removeEventListener 'keyup', window[nameFunc], false
               state.element.add[property][parameter][nameFunc] = false
               error.element.add[property][parameter] this, false
-              #console.log 'remove - listner' 
 
-        doInspect = (inspected,type,obj)->
-          if (state.element.add[type].range_length[inspected]==false or state.element.add[type].range_length[inspected]==undefined) and inspector.element.add[type].range_length(obj)==false
-            state.element.add[type].range_length[inspected] = true
-            error.element.add[type].range_length obj, true
-            setListner inspected, type, 'range_length'
+        doInspect = (inspected,struct,obj)->
+          if (state.element.add[struct].range_length[inspected]==false or state.element.add[struct].range_length[inspected]==undefined) and inspector.element.add[struct].range_length(obj)==false
+            makeListner inspected, struct, 'range_length' if state.element.add[struct].range_length[inspected]==undefined # Если не создан
             obj.addEventListener 'keyup', window[inspected], false
-            #console.log 'add - listner'
+            state.element.add[struct].range_length[inspected] = true
+            error.element.add[struct].range_length obj, true
 
-        doInspect options.text.id, options.text.struct, document.getElementById options.text.id
+        checkState = (options) ->
+          for s,o of options
+            for k,v of state.element.add[s].range_length
+              return false if v
+        
+        # Inspect elements
+        doInspect options.text.id, 'text', document.getElementById options.text.id
 
-        for i in [1..env.element.add.c]
+        for i in [1..env.element.add.field.c]
           inspected = options.field.idPrefix+i
           obj = document.getElementById inspected
-          doInspect inspected, options.field.struct, obj
+          doInspect inspected, 'field', obj
         
+        # Check validate
+        return checkState(options)
+
         console.log 'Inspection>>> element add: -=TRUE=-'
         return true
