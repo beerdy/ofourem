@@ -15,9 +15,32 @@
         field: {
           append: function() {
             var obj;
+            if (env.element.add.field.c === window.O4.pp.element.add.field.range_count[0]) {
+              document.getElementById('elementFieldRemove').style.display = 'block';
+            }
             env.element.add.field.c += 1;
             obj = document.getElementById('style--' + window.O4.pp.element.add.field.id_prefix + env.element.add.field.c);
-            return obj.style.display = 'list-item';
+            obj.style.display = 'list-item';
+            console.log(env.element.add.field.c);
+            if (env.element.add.field.c >= window.O4.pp.element.add.field.range_count[1]) {
+              return document.getElementById('elementFieldAppend').style.display = 'none';
+            }
+          },
+          remove: function() {
+            var field, obj;
+            if (env.element.add.field.c === window.O4.pp.element.add.field.range_count[1]) {
+              document.getElementById('elementFieldAppend').style.display = 'block';
+            }
+            field = window.O4.pp.element.add.field.id_prefix + env.element.add.field.c;
+            obj = document.getElementById('style--' + field);
+            obj.style.display = 'none';
+            obj = document.getElementById(field);
+            obj.value = '';
+            env.element.add.field.c -= 1;
+            if (env.element.add.field.c <= window.O4.pp.element.add.field.range_count[0]) {
+              document.getElementById('elementFieldRemove').style.display = 'none';
+            }
+            return console.log(env.element.add.field.c);
           }
         }
       };

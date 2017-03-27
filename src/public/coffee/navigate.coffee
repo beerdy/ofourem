@@ -14,6 +14,8 @@ this.navigate =
         controller.element.add()
       when 'elementFieldAppend'
         controller.element.field.append()
+      when 'elementFieldRemove'
+        controller.element.field.remove()
 
       else
         break

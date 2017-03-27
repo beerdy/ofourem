@@ -12,6 +12,8 @@
           return controller.element.add();
         case 'elementFieldAppend':
           return controller.element.field.append();
+        case 'elementFieldRemove':
+          return controller.element.field.remove();
         default:
           break;
       }
