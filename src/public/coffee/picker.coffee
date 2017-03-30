@@ -23,12 +23,14 @@ this.picker =
               state.element.add[property][parameter][nameFunc] = false
               error.element.add[property][parameter] this, false
 
-        doInspect = (inspected,struct,obj)->
+        inspectAndSet = (inspected,struct,obj)->
           if (state.element.add[struct].range_length[inspected]==false or state.element.add[struct].range_length[inspected]==undefined) and inspector.element.add[struct].range_length(obj)==false
             makeListner inspected, struct, 'range_length' if state.element.add[struct].range_length[inspected]==undefined # Если функция прослушивания не существует - создадим ее
             obj.addEventListener 'keyup', window[inspected], false
             state.element.add[struct].range_length[inspected] = true
             error.element.add[struct].range_length obj, true
+          else
+            env.element.add[struct][inspected] = obj.value     
 
         checkState = (options) ->
           for s,o of options
@@ -37,15 +39,17 @@ this.picker =
                 console.log 'Inspection STRUCT>>> element add: -=FALSE see error validation=-'
                 return false
           console.log 'Inspection>>> element add: -=TRUE=-'
+          return true
 
         # Inspect elements
-        doInspect options.text.id, 'text', document.getElementById options.text.id
+        inspectAndSet options.text.id, 'text', document.getElementById options.text.id
 
         for i in [1..env.element.add.field.c]
           inspected = options.field.idPrefix+i
           obj = document.getElementById inspected
           break if obj==null
-          doInspect inspected, 'field', obj
-        
+          inspectAndSet inspected, 'field', obj
+
+        ## На фронте нет проверки на количество
         # Check validate
         return checkState options

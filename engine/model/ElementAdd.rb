@@ -6,7 +6,7 @@ class ElementAdd
   end
 
   def insert element
-    puts "INSERT: element added"
+    puts "INSERT: element added - #{element}"
     $element_o4.insert_one element
   end
 end

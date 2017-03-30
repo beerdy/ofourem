@@ -15,7 +15,7 @@ this.error =
       if bool
         obj.className += " error1"
       else
-        obj.className = " "
+        obj.className = obj.className.replace " error1", ""
 
     @element.add.field.range_count = (obj,bool) ->
       console.log 'error field range_count:', bool
@@ -24,4 +24,4 @@ this.error =
       if bool
         obj.className += " error1"
       else
-        obj.className = " "
+        obj.className = obj.className.replace " error1", ""

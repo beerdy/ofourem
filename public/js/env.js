@@ -15,7 +15,8 @@
       return this.element.add = {
         'field': {
           'c': window.O4.pp.element.add.field.range_count[0]
-        }
+        },
+        'text': new Object
       };
     }
   };

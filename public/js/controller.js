@@ -21,7 +21,6 @@
             env.element.add.field.c += 1;
             obj = document.getElementById('style--' + window.O4.pp.element.add.field.id_prefix + env.element.add.field.c);
             obj.style.display = 'list-item';
-            console.log(env.element.add.field.c);
             if (env.element.add.field.c >= window.O4.pp.element.add.field.range_count[1]) {
               return document.getElementById('elementFieldAppend').style.display = 'none';
             }
@@ -36,11 +35,15 @@
             obj.style.display = 'none';
             obj = document.getElementById(field);
             obj.value = '';
+            if (state.element.add.field.range_length[field] !== void 0) {
+              obj.removeEventListener('keyup', window[field], false);
+              state.element.add.field.range_length[field] = void 0;
+              error.element.add.field.range_length(obj, false);
+            }
             env.element.add.field.c -= 1;
             if (env.element.add.field.c <= window.O4.pp.element.add.field.range_count[0]) {
-              document.getElementById('elementFieldRemove').style.display = 'none';
+              return document.getElementById('elementFieldRemove').style.display = 'none';
             }
-            return console.log(env.element.add.field.c);
           }
         }
       };
