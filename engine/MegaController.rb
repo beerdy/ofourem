@@ -41,7 +41,13 @@ class MegaController < ControllerInitialize
     })
   end
 =end
-  def element_read
+  
+  # По умолчанию все читаем
+  def element_read type='all'
+    case type
+    when condition
+      
+    end
   end
 
   def send_list
