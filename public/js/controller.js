@@ -12,6 +12,9 @@
             return net.element.add();
           }
         },
+        read: function() {
+          return net.element.read();
+        },
         field: {
           append: function() {
             var obj;

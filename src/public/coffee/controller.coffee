@@ -8,7 +8,8 @@ this.controller =
     @element = 
       add: () ->
         net.element.add() if picker.element.add()
-      
+      read: () ->
+        net.element.read()
       # Не забыть откешировать ID
       field:
         append: () ->

@@ -64,10 +64,12 @@ begin
     main = MegaController.new env
 
     # > static page
-    return main.index       if env['REQUEST_PATH'].match(%r{^/$})
+    return main.index       if env['REQUEST_PATH'].match %r{^/$}
     return main.element_add if env['REQUEST_PATH'].match %r{^/element_add$}
     return main.user        if env['REQUEST_PATH'].match %r{^/user$}
     # < end static page
+
+    return main.element_read if env['REQUEST_PATH'].match %r{^/element_read$}
 
     return main.property_frontend if env['REQUEST_PATH'].match %r{^/property_frontend$}
     

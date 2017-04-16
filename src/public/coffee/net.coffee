@@ -8,6 +8,9 @@ this.net =
     @element = 
       add: () ->
         stdAjax 'element_add', env.element.add
+      read: () ->
+        # Пока все
+        stdAjax 'element_read', env.element.read
 
 # ------------------------------ #
 # -- AJAX to Server by jQuery -- #
@@ -23,7 +26,8 @@ stdAjax = (action, params) ->
     contentType: 'application/json; charset=UTF-8'
     data: JSON.stringify(params)
     success: (s) ->
-      console.log 'server asked:','foooo'
+      console.log 'server asked:','foooo:', JSON.parse(s)
       return
     beforeSend: ->
+      console.log 'end'
       # body

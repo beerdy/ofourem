@@ -27,6 +27,9 @@ module Property
             :range_count => [3,5],
             :range_length => [1,50]
           }
+        },
+        :read => {
+          :limit => 12
         }
       }
     }

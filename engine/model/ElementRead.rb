@@ -5,7 +5,7 @@ class ElementRead
     @env = env
   end
 
-  def find element
-    $element_o4.find()
+  def all
+    r $element_o4.find().limit(O4.pp.element.read.limit).to_a
   end
 end

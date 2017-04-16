@@ -45,9 +45,11 @@ class MegaController < ControllerInitialize
   # По умолчанию все читаем
   def element_read type='all'
     case type
-    when condition
-      
+    when 'all'
+      el = ElementRead.new(@env).all
     end
+
+    render :content => { :data=>{ 'page_not_found' => el } }
   end
 
   def send_list

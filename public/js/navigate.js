@@ -10,6 +10,8 @@
           return ui.elementAdd.show();
         case 'elementAdd':
           return controller.element.add();
+        case 'elementRead':
+          return controller.element.read();
         case 'elementFieldAppend':
           return controller.element.field.append();
         case 'elementFieldRemove':

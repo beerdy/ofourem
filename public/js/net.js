@@ -11,6 +11,9 @@
       return this.element = {
         add: function() {
           return stdAjax('element_add', env.element.add);
+        },
+        read: function() {
+          return stdAjax('element_read', env.element.read);
         }
       };
     }
@@ -26,9 +29,11 @@
       contentType: 'application/json; charset=UTF-8',
       data: JSON.stringify(params),
       success: function(s) {
-        console.log('server asked:', 'foooo');
+        console.log('server asked:', 'foooo:', JSON.parse(s));
       },
-      beforeSend: function() {}
+      beforeSend: function() {
+        return console.log('end');
+      }
     });
   };
 

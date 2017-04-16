@@ -13,5 +13,6 @@ this.env =
   element_: () ->
     @element.add =
       'field':
-        'c':window.O4.pp.element.add.field.range_count[0]
-      'text':new Object
+        'c': window.O4.pp.element.add.field.range_count[0]
+      'text': new Object
+    @element.read = new Object

@@ -5,8 +5,14 @@ module Rendering
     raise code.to_json
   end
 
-  # Alias JSON rendering
+  # Alias rendering
   def r message
-    render :json => { :data => JSON.parse(message) }
+    #render :json => { :data => JSON.parse(message) }
+
+    #Только для json
+    #render :json => { :data => message }
+
+    #Автовыбор
+    render :content => { :data => message }
   end
 end
