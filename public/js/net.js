@@ -21,7 +21,8 @@
 
   stdAjax = function(action, params) {
     params['j'] = 1;
-    console.log('send to server:', params);
+    params['action'] = action;
+    console.log('Send To SRV:', params);
     return $.ajax({
       type: 'POST',
       url: '/' + action,
@@ -29,10 +30,11 @@
       contentType: 'application/json; charset=UTF-8',
       data: JSON.stringify(params),
       success: function(s) {
-        console.log('server asked:', 'foooo:', JSON.parse(s));
+        env.element.read = JSON.parse(s);
+        console.log('SRV Asked:', 'Foo:', env.element.read);
       },
       beforeSend: function() {
-        return console.log('end');
+        return console.log('End');
       }
     });
   };

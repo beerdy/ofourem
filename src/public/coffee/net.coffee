@@ -17,8 +17,8 @@ this.net =
 # ------------------------------ #
 stdAjax = (action, params) ->
   params['j'] = 1 # Известим сервер об том что это AJAX для того, чтобы ответ был тоже в формате AJAX
-
-  console.log 'send to server:', params
+  params['action'] = action # Так та вот в люом случае извещен
+  console.log 'Send To SRV:', params
   $.ajax
     type: 'POST'
     url: '/'+action
@@ -26,8 +26,9 @@ stdAjax = (action, params) ->
     contentType: 'application/json; charset=UTF-8'
     data: JSON.stringify(params)
     success: (s) ->
-      console.log 'server asked:','foooo:', JSON.parse(s)
+      env.element.read = JSON.parse s
+      console.log 'SRV Asked:','Foo:', env.element.read
       return
     beforeSend: ->
-      console.log 'end'
+      console.log 'End'
       # body

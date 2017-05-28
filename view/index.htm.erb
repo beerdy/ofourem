@@ -4,6 +4,13 @@
     <meta charset="utf-8">
     <title>o4em3.0</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script type="text/javascript" src="public/lib/js/jquery.min.js"></script>
+    <script type="text/javascript" src="public/lib/js/bootstrap.min.js"></script>
+
+    <link href="public/lib/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    
+    <!-- END Hide/Show fields and elements style -->
     <link href="public/css/hide.css" rel="stylesheet" media="screen">
     <style type="text/css">
       /* Show CSS */
@@ -15,8 +22,9 @@
     </style>
     <link href="public/css/error.css" rel="stylesheet" media="screen">
     <link href="public/css/style.css" rel="stylesheet" media="screen">
-    
-    <script src="public/lib/jquery.min.js"></script>
+    <!-- // END Hide/Show fields and elements style -->
+
+    <!-- Initialize All prperties and info - messages -->
     <script type="text/javascript">
       // СТоит вынести в файл
       window.O4 = {
@@ -28,6 +36,8 @@
         }
       };
     </script>
+    <!-- // END Initialize All prperties and info - messages -->
+
     <script src="public/js/fabric.js"></script>
     <script src="public/js/env.js"></script>
     <script src="public/js/state.js"></script>
@@ -81,7 +91,10 @@
     </div>
 
     <div id="elementsListContainer">
-      elementAddCcontainer
+      <!-- Такой вариант отпадает, т.к. в случае повторной ошибки придеться очищать динамический блок
+      <span id="error--elementsListContainer">Default MSG: error reading ellements</span>
+      // -->
+      
     </div>
   </body>
 </html>

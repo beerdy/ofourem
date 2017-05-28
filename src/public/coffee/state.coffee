@@ -15,3 +15,5 @@ this.state =
 
     @element.add.field.range_count = false
     @element.add.field.range_length = new Object
+
+    @element.read = false

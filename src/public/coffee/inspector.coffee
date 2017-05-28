@@ -26,3 +26,8 @@ this.inspector =
 
     #@element = window.O4.tt.error.inspection
     #console.log @element_tt
+
+    @element.read = () ->
+      # Проверка только на один элемент - если он есть то все ок
+      return false if evn.element.read[0]==undefined or evn.element.read[0]==null
+      return true

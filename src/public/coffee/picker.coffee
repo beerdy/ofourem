@@ -53,3 +53,9 @@ this.picker =
         ## На фронте нет проверки на количество
         # Check validate
         return checkState options
+      read: () ->
+        state.element.read==inspector.element.read()
+
+
+
+

@@ -12,12 +12,13 @@ this.navigate =
         ui.elementAdd.show()
       when 'elementAdd'
         controller.element.add()
-      when 'elementRead'
-        controller.element.read()
       when 'elementFieldAppend'
         controller.element.field.append()
       when 'elementFieldRemove'
         controller.element.field.remove()
 
+      when 'elementRead'
+        controller.element.read()
+        
       else
         break

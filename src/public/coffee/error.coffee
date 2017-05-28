@@ -25,3 +25,10 @@ this.error =
         obj.className += " error1"
       else
         obj.className = obj.className.replace " error1", ""
+
+    @element.read = () ->
+      message = 'error read elements'
+      console.log message
+      error = document.createTextNode message
+      elementsListContainer.appendChild error
+
