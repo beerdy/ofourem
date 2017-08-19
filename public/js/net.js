@@ -4,8 +4,10 @@
 
   this.net = {
     element: new Object,
+    elements: new Object,
     init: function(argument) {
-      return this.element_();
+      this.element_();
+      return this.elements_();
     },
     element_: function() {
       return this.element = {
@@ -16,13 +18,19 @@
           return stdAjax('element_read', env.element.read);
         }
       };
+    },
+    elements_: function() {
+      return this.elements = {
+        read: function() {
+          return stdAjax('elements_read', env.elements.read);
+        }
+      };
     }
   };
 
-  stdAjax = function(action, params) {
+  stdAjax = function(action, params, response) {
     params['j'] = 1;
     params['action'] = action;
-    console.log('Send To SRV:', params);
     return $.ajax({
       type: 'POST',
       url: '/' + action,
@@ -30,11 +38,19 @@
       contentType: 'application/json; charset=UTF-8',
       data: JSON.stringify(params),
       success: function(s) {
-        env.element.read = JSON.parse(s);
-        console.log('SRV Asked:', 'Foo:', env.element.read);
+        var e;
+        if (s) {
+          try {
+            env2.response = JSON.parse(s);
+            console.log('200 Asked:', env2.response);
+          } catch (error1) {
+            e = error1;
+            error.response(e);
+          }
+        }
       },
       beforeSend: function() {
-        return console.log('End');
+        return console.log('REQUEST:', params);
       }
     });
   };

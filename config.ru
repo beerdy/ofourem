@@ -70,7 +70,7 @@ begin
     # < end static page
 
     return main.element_read if env['REQUEST_PATH'].match %r{^/element_read$}
-
+    return main.elements_read if env['REQUEST_PATH'].match %r{^/elements_read$}
     return main.property_frontend if env['REQUEST_PATH'].match %r{^/property_frontend$}
     
     #return start.error( start.env.info ) unless start.env.check

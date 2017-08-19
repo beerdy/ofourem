@@ -3,7 +3,9 @@ this.controller =
 
   init: (argument) -> 
     @element_()
+    @elements_()
 
+# Element - one
   element_: () ->
     @element = 
       add: () ->
@@ -42,4 +44,19 @@ this.controller =
           env.element.add.field.c -= 1
 
           document.getElementById('elementFieldRemove').style.display = 'none' if env.element.add.field.c <= window.O4.pp.element.add.field.range_count[0]
+
+# Elements - many
+  elements_: () ->
+    @elements =
+      read: () ->
+        net.elements.read()
+        picker.elements.read()
+        
+        if state.elements.read
+          ui.elements.read.show()
+        else
+          error.elements.read()
+
+
+
 

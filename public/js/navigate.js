@@ -7,7 +7,7 @@
       window.location.hash = '';
       switch (env.client.action) {
         case 'elementAddShow':
-          return ui.elementAdd.show();
+          return ui.element.container.show();
         case 'elementAdd':
           return controller.element.add();
         case 'elementFieldAppend':
@@ -16,6 +16,8 @@
           return controller.element.field.remove();
         case 'elementRead':
           return controller.element.read();
+        case 'elementsRead':
+          return controller.elements.read();
         default:
           break;
       }

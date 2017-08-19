@@ -1,9 +1,12 @@
 this.inspector = 
   element: new Object
+  elements: new Object
 
   init: () ->
     @element_()
+    @elements_()
     #@element.add.text.min_length('obj')
+
   element_: () ->
     # Задача превратить в фкнуцию конечное свойство объекта 
 
@@ -23,11 +26,12 @@ this.inspector =
       return false if obj.value.length < window.O4.pp.element.add.field.range_length[0] or obj.value.length > window.O4.pp.element.add.field.range_length[1]
       return true
 
-
-    #@element = window.O4.tt.error.inspection
-    #console.log @element_tt
-
     @element.read = () ->
       # Проверка только на один элемент - если он есть то все ок
-      return false if evn.element.read[0]==undefined or evn.element.read[0]==null
+      return false if env.element.read[0]==undefined or env.element.read[0]==null
+      return true
+
+  elements_: () ->
+    @elements.read = () ->
+      return false if env.elements.read[0]==undefined or env.elements.read[0]==null
       return true

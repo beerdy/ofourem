@@ -1,8 +1,9 @@
 this.state = 
   element: new Object
-
+  elements: new Object
   init: () ->
     @element_()
+    @elements_()
 
   element_: () ->
     # Задача превратить в фкнуцию конечное свойство объекта 
@@ -17,3 +18,6 @@ this.state =
     @element.add.field.range_length = new Object
 
     @element.read = false
+
+  elements_: () ->
+    @elements.read = false    

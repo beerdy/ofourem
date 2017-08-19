@@ -1,10 +1,10 @@
 this.picker = 
-
   element: new Object
- 
+  elements: new Object
+  
   init: (options) ->
-
     @element_ options
+    @elements_()
 
   element_: (options) ->
 
@@ -55,6 +55,12 @@ this.picker =
         return checkState options
       read: () ->
         state.element.read==inspector.element.read()
+
+  elements_: () ->
+    @elements =
+      read: () ->
+        state.elements.read==inspector.elements.read()
+
 
 
 

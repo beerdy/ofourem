@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-class ElementRead
+class ElementsRead
   def initialize env
     @env = env
   end

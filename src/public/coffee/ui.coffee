@@ -1,11 +1,20 @@
 this.ui =
-  elementAdd: new Object
+  element: new Object
+  elements: new Object
 
-  init: () ->
-    @elementAdd_()
+  init: (argument) -> 
+    @element_()
+    @elements_()
 
-  elementAdd_: () ->
-    container = 'elementAddContainer'
-    @elementAdd =
-      show: () ->
-        document.getElementById(container).style.display = "block"
+#Element - One
+  element_: () ->
+    @element = 
+      container:
+        show: () ->
+          document.getElementById('elementAddContainer').style.display = "block"
+
+#Elements - Many
+  elements_: () ->
+    @elements = 
+      
+

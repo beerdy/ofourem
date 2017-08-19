@@ -40,6 +40,7 @@
 
     <script src="public/js/fabric.js"></script>
     <script src="public/js/env.js"></script>
+    <script src="public/js/env2.js"></script>
     <script src="public/js/state.js"></script>
     <script src="public/js/error.js"></script>
     <script src="public/js/inspector.js"></script>
@@ -54,6 +55,10 @@
           O4.init();
           ui.init();
           env.init();
+          
+          //пока нечего инициализировать (см. внутрь)
+          //env2.init();
+
           state.init();
           error.init();
           inspector.init();
@@ -75,7 +80,7 @@
   </head>
   <body>
     <button id="elementAddShow" onclick="return navigate.id(this)">добавить опрос</button>
-    <button id="elementRead" onclick="return navigate.id(this)">список опросов</button>
+    <button id="elementsRead" onclick="return navigate.id(this)">список опросов</button>
 
     <div id="elementAddContainer">
       <h5>Добавление опроса</h5>

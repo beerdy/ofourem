@@ -50,6 +50,14 @@ class MegaController < ControllerInitialize
     end
   end
 
+  def elements_read type='all'
+    case type
+    when 'all'
+      render :content => { :data=>{ 'page_not_found' =>  ElementsRead.new(@env).all }}
+    end
+  end
+
+
   def send_list
     obj_send_list = SendList.new( @env )
     obj_send_list.send_list

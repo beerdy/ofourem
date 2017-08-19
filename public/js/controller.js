@@ -3,7 +3,8 @@
   this.controller = {
     element: new Object,
     init: function(argument) {
-      return this.element_();
+      this.element_();
+      return this.elements_();
     },
     element_: function() {
       return this.element = {
@@ -47,6 +48,19 @@
             if (env.element.add.field.c <= window.O4.pp.element.add.field.range_count[0]) {
               return document.getElementById('elementFieldRemove').style.display = 'none';
             }
+          }
+        }
+      };
+    },
+    elements_: function() {
+      return this.elements = {
+        read: function() {
+          net.elements.read();
+          picker.elements.read();
+          if (state.elements.read) {
+            return ui.elements.read.show();
+          } else {
+            return error.elements.read();
           }
         }
       };

@@ -9,7 +9,7 @@ this.navigate =
     window.location.hash = ''
     switch env.client.action
       when 'elementAddShow'
-        ui.elementAdd.show()
+        ui.element.container.show()
       when 'elementAdd'
         controller.element.add()
       when 'elementFieldAppend'
@@ -19,6 +19,8 @@ this.navigate =
 
       when 'elementRead'
         controller.element.read()
+      when 'elementsRead'
+        controller.elements.read()
         
       else
         break

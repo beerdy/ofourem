@@ -1,8 +1,19 @@
 this.error = 
+  response: new Object
   element: new Object
+  elements: new Object
 
   init: () ->
+    @response_()
     @element_()
+    @elements_()
+
+  # Можно конечно и сразу в хидере но это будет авто инит
+  response_: () ->
+    @response = (e) ->
+      # На данный момент тут ошибки парсинга
+      console.log e
+
   element_: () ->
     # Задача превратить в фкнуцию конечное свойство объекта 
 
@@ -27,8 +38,17 @@ this.error =
         obj.className = obj.className.replace " error1", ""
 
     @element.read = () ->
-      message = 'error read elements'
+      message = 'error read one element'
       console.log message
       error = document.createTextNode message
       elementsListContainer.appendChild error
+
+  elements_: () ->
+    @elements = 
+      read: () ->
+        message = 'error read many elements'
+        console.log message
+        error = document.createTextNode message
+        elementsListContainer.appendChild error
+
 
