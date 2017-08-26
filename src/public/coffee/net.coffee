@@ -6,38 +6,40 @@ this.net =
     @element_()
     @elements_()
 
-  element_: () ->
+  element_: () -> 
     @element = 
-      add: () ->
-        stdAjax 'element_add', env.element.add
-      read: () ->
-        stdAjax 'element_read', env.element.read
-  
+      add: () -> stdAjax()
+      read: () -> stdAjax()
   elements_: () ->
-    @elements =
-      read: () ->
-        stdAjax 'elements_read', env.elements.read
+    @elements = 
+      read: () -> stdAjax()
 
 # ------------------------------ #
 # -- AJAX to Server by jQuery -- #
 # ------------------------------ #
-stdAjax = (action, params, response) ->
-  params['j'] = 1 # Известим сервер об том что это AJAX для того, чтобы ответ был тоже в формате AJAX
-  params['action'] = action # Так та вот в люом случае извещен
+stdAjax = () ->
+  env.client.params['j'] = 1 # Известим сервер об том что это AJAX для того, чтобы ответ был тоже в формате AJAX
+  env.client.params['action'] = env.client.action # Так та вот в люом случае извещен
 
   $.ajax
     type: 'POST'
-    url: '/'+action
-    async: true
+    url: '/'+env.client.action
+    async: false
     contentType: 'application/json; charset=UTF-8'
-    data: JSON.stringify(params)
+    data: JSON.stringify(env.client.params)
     success: (s) ->
       if s
         try
-          env2.response = JSON.parse s
-          console.log '200 Asked:', env2.response
+          env.response = JSON.parse s
+          console.log '200 Asked:', env.response
+
+          writecity = document.createTextNode(s)
+          document.getElementById("textAreaID").appendChild(writecity)
+          
+          state.response = true
         catch e
-          error.response e  
+          state.response = false # by default
+          error.response e
       return
     beforeSend: ->
-      console.log 'REQUEST:', params
+      console.log 'REQUEST:', env.client.params

@@ -1,10 +1,13 @@
 this.state = 
+  response: new Object
   element: new Object
   elements: new Object
   init: () ->
+    @response_()
     @element_()
     @elements_()
-
+  response_: () ->
+    @response = false
   element_: () ->
     # Задача превратить в фкнуцию конечное свойство объекта 
     #1. получим структуру из свойств объекта. Удобно для восприятия
@@ -20,4 +23,4 @@ this.state =
     @element.read = false
 
   elements_: () ->
-    @elements.read = false    
+    @elements.read = false

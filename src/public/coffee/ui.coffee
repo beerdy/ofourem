@@ -16,5 +16,8 @@ this.ui =
 #Elements - Many
   elements_: () ->
     @elements = 
+      read:
+        show: () ->
+          document.getElementById('elementAddContainer').style.display = "block"
       
 

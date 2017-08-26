@@ -16,7 +16,15 @@
         }
       };
     },
-    elements_: function() {}
+    elements_: function() {
+      return this.elements = {
+        read: {
+          show: function() {
+            return document.getElementById('elementAddContainer').style.display = "block";
+          }
+        }
+      };
+    }
   };
 
 }).call(this);

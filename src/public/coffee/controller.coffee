@@ -49,13 +49,15 @@ this.controller =
   elements_: () ->
     @elements =
       read: () ->
-        net.elements.read()
+        net.elements.read() unless state.response
+
+        # Передаем из общего Объекта ответа сервера в требуемое для дальнейшей
+        #обработки в том числе индивидульной валидации полученного ответа
+        env.elements.read = env.response
         picker.elements.read()
-        
-        if state.elements.read
-          ui.elements.read.show()
-        else
-          error.elements.read()
+        alert state.response
+        return ui.elements.read.show() if state.elements.read
+        error.elements.read()
 
 
 

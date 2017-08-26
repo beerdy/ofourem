@@ -12,45 +12,49 @@
     element_: function() {
       return this.element = {
         add: function() {
-          return stdAjax('element_add', env.element.add);
+          return stdAjax();
         },
         read: function() {
-          return stdAjax('element_read', env.element.read);
+          return stdAjax();
         }
       };
     },
     elements_: function() {
       return this.elements = {
         read: function() {
-          return stdAjax('elements_read', env.elements.read);
+          return stdAjax();
         }
       };
     }
   };
 
-  stdAjax = function(action, params, response) {
-    params['j'] = 1;
-    params['action'] = action;
+  stdAjax = function() {
+    env.client.params['j'] = 1;
+    env.client.params['action'] = env.client.action;
     return $.ajax({
       type: 'POST',
-      url: '/' + action,
-      async: true,
+      url: '/' + env.client.action,
+      async: false,
       contentType: 'application/json; charset=UTF-8',
-      data: JSON.stringify(params),
+      data: JSON.stringify(env.client.params),
       success: function(s) {
-        var e;
+        var e, writecity;
         if (s) {
           try {
-            env2.response = JSON.parse(s);
-            console.log('200 Asked:', env2.response);
+            env.response = JSON.parse(s);
+            console.log('200 Asked:', env.response);
+            writecity = document.createTextNode(s);
+            document.getElementById("textAreaID").appendChild(writecity);
+            state.response = true;
           } catch (error1) {
             e = error1;
+            state.response = false;
             error.response(e);
           }
         }
       },
       beforeSend: function() {
-        return console.log('REQUEST:', params);
+        return console.log('REQUEST:', env.client.params);
       }
     });
   };

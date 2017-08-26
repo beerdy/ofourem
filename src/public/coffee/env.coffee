@@ -1,4 +1,4 @@
-this.env = 
+this.env =
   response: new Object
   client: new Object
   element: new Object

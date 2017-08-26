@@ -20,7 +20,7 @@ this.navigate =
       when 'elementRead'
         controller.element.read()
       when 'elementsRead'
+        env.client.action = 'elements_read'
         controller.elements.read()
-        
       else
         break

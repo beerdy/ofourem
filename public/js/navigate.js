@@ -17,6 +17,7 @@
         case 'elementRead':
           return controller.element.read();
         case 'elementsRead':
+          env.client.action = 'elements_read';
           return controller.elements.read();
         default:
           break;

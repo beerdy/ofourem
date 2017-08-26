@@ -76,6 +76,7 @@
         });
 
       }).call(this);
+      document.getElementById('textAreaID').addEventListener("DOMNodeInserted",function(e){ alert('страница изменена'); },false);
     </script>
   </head>
   <body>
@@ -101,5 +102,6 @@
       // -->
       
     </div>
+    <div id="textAreaID"></div>
   </body>
 </html>

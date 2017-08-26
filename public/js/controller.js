@@ -55,13 +55,16 @@
     elements_: function() {
       return this.elements = {
         read: function() {
-          net.elements.read();
+          if (!state.response) {
+            net.elements.read();
+          }
+          env.elements.read = env.response;
           picker.elements.read();
+          alert(state.response);
           if (state.elements.read) {
             return ui.elements.read.show();
-          } else {
-            return error.elements.read();
           }
+          return error.elements.read();
         }
       };
     }
