@@ -16,8 +16,10 @@ use Rack::Static, :urls => ['/public']
 require './config.rb'
 require './engine/_RenderPage.rb'
 require './engine/_ControllerInitialize.rb'
+
 require './router.rb'
 
+require './engine/config/vkontakte_api.rb'
 
 #===================#
 # -- Mix методов -- #

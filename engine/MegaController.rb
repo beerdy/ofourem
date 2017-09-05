@@ -22,7 +22,10 @@ class MegaController < ControllerInitialize
   def element_add
     @env.issue.element_add @meta.element_add ElementAdd.new(@env).insert @is.element_add
   end
-
+  
+  def vkontakte_auth
+    
+  end
 =begin
   def element_add_
     obj_tags = TagsAdd.new()
