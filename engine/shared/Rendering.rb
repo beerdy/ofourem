@@ -2,10 +2,10 @@
 
 module Rendering
   def render(code={}, option=nil)
-    raise code.to_json
+    raise code.merge({ :rendertempate => 'Rendering' }).to_json
   end
 
-  # Alias rendering
+  # Alias render
   def r message
     #render :json => { :data => JSON.parse(message) }
 
@@ -14,5 +14,18 @@ module Rendering
 
     #Автовыбор
     render :content => { :data => message }
+  end
+  
+
+  module Exception
+    class << self
+      def console(e)
+        puts '//-----------------'
+        puts "ER: PROJECT MESSAGE - #{e.message}"
+        puts "ER: PROJECT INSPECT - #{e.inspect}"
+        puts "ER: PROJECT BACKTRACE0 - #{e.backtrace[0]}"
+        puts '-----------------//'
+      end
+    end
   end
 end

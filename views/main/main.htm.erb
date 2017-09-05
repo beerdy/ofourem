@@ -80,28 +80,6 @@
     </script>
   </head>
   <body>
-    <button id="elementAddShow" onclick="return navigate.id(this)">добавить опрос</button>
-    <button id="elementsRead" onclick="return navigate.id(this)">список опросов</button>
-
-    <div id="elementAddContainer">
-      <h5>Добавление опроса</h5>
-      Тест опроса: <textarea id="t1"></textarea><button id="elementAdd" onclick="return navigate.id(this)">Опросить</button><br>
-      Варианты опроса:  
-      <ol class="elementFieldsList">
-        <% 1.upto @pp_backend.element.add.field.range_count[1] do |index| %>
-        <li id="style--<%=@pp_backend.element.add.field.id_prefix%><%=index%>"><input id="<%=@pp_backend.element.add.field.id_prefix%><%=index%>"></input></li>
-        <%end%>
-      </ol>
-      <button id="elementFieldAppend" onclick="return navigate.id(this)">Добавить вариант</button>
-      <button id="elementFieldRemove" onclick="return navigate.id(this)">Убрать вариант</button>
-    </div>
-
-    <div id="elementsListContainer">
-      <!-- Такой вариант отпадает, т.к. в случае повторной ошибки придеться очищать динамический блок
-      <span id="error--elementsListContainer">Default MSG: error reading ellements</span>
-      // -->
-      
-    </div>
-    <div id="textAreaID"></div>
+  [[main]]
   </body>
 </html>

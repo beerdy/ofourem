@@ -14,15 +14,17 @@ use Rack::Reloader, 0
 use Rack::Static, :urls => ['/public']
 
 require './config.rb'
-
 require './engine/_RenderPage.rb'
 require './engine/_ControllerInitialize.rb'
+require './router.rb'
+
 
 #===================#
 # -- Mix методов -- #
 #===================#
 INCLUDING_PATH = ['engine','engine/model']
 SHARED_PATH = 'engine/shared'
+
 
 INCLUDING_PATH.each do |path|
   # Подключим расширяемые модули
@@ -55,7 +57,7 @@ class Application
 # Переписываем стандартное исключение для всего кода (собственно только на вывод)
 begin
 
-  # RUN def call(env)
+  # def call(env)
     no_route = true
 
     env['rack_input'] ||= env['rack.input'].read # После считывания env["rack.input"].read кудато проподает (можно потом глянуть - зачем?)
@@ -63,34 +65,28 @@ begin
 
     main = MegaController.new env
 
-    # > static page
-    return main.index       if env['REQUEST_PATH'].match %r{^/$}
-    return main.element_add if env['REQUEST_PATH'].match %r{^/element_add$}
-    return main.user        if env['REQUEST_PATH'].match %r{^/user$}
-    # < end static page
+    return main.instance_eval Router.to env['REQUEST_PATH']
+  # // def call(env)
 
-    return main.element_read if env['REQUEST_PATH'].match %r{^/element_read$}
-    return main.elements_read if env['REQUEST_PATH'].match %r{^/elements_read$}
-    return main.property_frontend if env['REQUEST_PATH'].match %r{^/property_frontend$}
-    
-    #return start.error( start.env.info ) unless start.env.check
-
-    return main.error( {:bool => false, :code => 8003, :info => "#{env['REQUEST_PATH']}"} ) if no_route
-  # END end def call(env)
 
 rescue => e
-case e.backtrace[0]
-when /Rendering/
-  return render_page( JSON.parse(e.message), main.env, env['request'] ) if main.respond_to? :env
-  return render_page( JSON.parse(e.message), nil, env['request'] )
-when /ANother/
-  # Another mixin File
-else
-  puts e.message
-  puts e.inspect 
-  puts e.backtrace
-end
+ 
+  message = Oj.load(e.message)
+  case message['rendertempate']
+  when "Rendering"
+    # Rendering::Exception.console e
+
+    return render_page( message, main.env, env['request'] ) if main.respond_to? :env
+    return render_page( message, nil, env['request'] )
+  when "ANother"
+    # Rendering::Exception.console e
+    # Another mixin File
+  else
+    # Rendering::Exception.console e
   end
-end
-end
+
+end ### // "rescue" exception
+end ## // "def call" method
+end # // "Application" Class
+
 run Application.new()
