@@ -9,6 +9,7 @@
         case 'elementAddShow':
           return ui.element.container.show();
         case 'elementAdd':
+          env.client.action = 'element_add';
           return controller.element.add();
         case 'elementFieldAppend':
           return controller.element.field.append();
@@ -19,6 +20,9 @@
         case 'elementsRead':
           env.client.action = 'elements_read';
           return controller.elements.read();
+        case 'vkAuth':
+          env.client.action = 'vk_auth';
+          return controller.vk.auth();
         default:
           break;
       }

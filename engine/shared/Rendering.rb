@@ -13,6 +13,7 @@ module Rendering
     #render :json => { :data => message }
 
     #Автовыбор
+    puts 'ffffffffffffffffffffffffff'
     render :content => { :data => message }
   end
   
@@ -23,7 +24,7 @@ module Rendering
         puts '//-----------------'
         puts "ER: PROJECT MESSAGE - #{e.message}"
         puts "ER: PROJECT INSPECT - #{e.inspect}"
-        puts "ER: PROJECT BACKTRACE0 - #{e.backtrace[0]}"
+        puts "ER: PROJECT BACKTRACE - #{e.backtrace}"
         puts '-----------------//'
       end
     end

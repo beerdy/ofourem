@@ -5,14 +5,16 @@
   this.net = {
     element: new Object,
     elements: new Object,
+    vk: new Object,
     init: function(argument) {
       this.element_();
-      return this.elements_();
+      this.elements_();
+      return this.vk_();
     },
     element_: function() {
       return this.element = {
         add: function() {
-          return stdAjax();
+          return stdAjax(env.element.add);
         },
         read: function() {
           return stdAjax();
@@ -25,18 +27,25 @@
           return stdAjax();
         }
       };
+    },
+    vk_: function() {
+      return this.vk = {
+        auth: function() {
+          return stdAjax();
+        }
+      };
     }
   };
 
-  stdAjax = function() {
-    env.client.params['j'] = 1;
-    env.client.params['action'] = env.client.action;
+  stdAjax = function(params) {
+    params['j'] = 1;
+    params['action'] = env.client.action;
     return $.ajax({
       type: 'POST',
       url: '/' + env.client.action,
       async: false,
       contentType: 'application/json; charset=UTF-8',
-      data: JSON.stringify(env.client.params),
+      data: JSON.stringify(params),
       success: function(s) {
         var e, writecity;
         if (s) {
@@ -54,7 +63,7 @@
         }
       },
       beforeSend: function() {
-        return console.log('REQUEST:', env.client.params);
+        return console.log('REQUEST:', params);
       }
     });
   };

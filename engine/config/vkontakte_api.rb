@@ -1,9 +1,11 @@
+# encoding: UTF-8
+
 VkontakteApi.configure do |config|
   # параметры, необходимые для авторизации средствами vkontakte_api
   # (не нужны при использовании сторонней авторизации)
-  config.app_id       = ''
-  config.app_secret   = ''
-  config.redirect_uri = ''
+  config.app_id       = '6175477'
+  config.app_secret   = 'hS8lpyMdctjxGcevFJqP'
+  config.redirect_uri = 'http://o4.otklik.pw/vk_verify'
 =begin
   # faraday-адаптер для сетевых запросов
   config.adapter = :net_http

@@ -5,7 +5,6 @@ class MegaController < ControllerInitialize
   # > static page
   def index
     #render_page. тут static
-    puts 'get index'
     render :index => true
   end
 
@@ -20,11 +19,17 @@ class MegaController < ControllerInitialize
   # < end static page
 
   def element_add
+    puts "Head shake "
     @env.issue.element_add @meta.element_add ElementAdd.new(@env).insert @is.element_add
   end
   
-  def vkontakte_auth
-    
+  def vk_auth    
+    render_page({
+      :data => VkontakteRu.new(@env).vk_auth
+    })
+  end
+  def vk_verify
+    VkontakteRu.new(@env).vk_verify
   end
 =begin
   def element_add_

@@ -10,8 +10,9 @@ class InspectionSet
     #puts "pp--: #{O4.pp}"
     #puts "tt--: #{O4.tt}"
     #puts "auth--: #{O4.auth}"
-
+    puts "Head shake "
     r O4.tt.error.inspection.element.add.text.nil unless @env.json['text']['t1']
+
     length = @env.json['text']['t1'].length
 
     r O4.tt.error.inspection.element.add.text.max_length if length > O4.pp.element.add.text.range_length[1]

@@ -4,7 +4,8 @@
     element: new Object,
     init: function(argument) {
       this.element_();
-      return this.elements_();
+      this.elements_();
+      return this.vk_();
     },
     element_: function() {
       return this.element = {
@@ -65,6 +66,13 @@
             return ui.elements.read.show();
           }
           return error.elements.read();
+        }
+      };
+    },
+    vk_: function() {
+      return this.vk = {
+        auth: function() {
+          return net.vk.auth();
         }
       };
     }

@@ -1,21 +1,26 @@
+# encoding: UTF-8
+
 module Router
   class << self
-    def to way
-      case way
+    def to mcontroller, uri
+      case uri
       when /^\/$/
-        'index'       
-      when /^\/element_read$/
-        'element_add'
+        mcontroller.index
+      when /^\/element_add$/
+        mcontroller.element_add
       when /^\/elements_read$/
-        'elements_read'
+        mcontroller.elements_read
       when /^\/property_frontend$/
-        'property_frontend'
+        mcontroller.property_frontend
       when /^\/user$/
-        'user'
+        mcontroller.user
+      when /^\/vk_auth$/
+        mcontroller.vk_auth
+      when /^\/vk_verify$/
+        mcontroller.vk_verify
       else
-        'error'
+        mcontroller.error
       end
-      # < end static page
     end
   end
 end

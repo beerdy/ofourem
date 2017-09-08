@@ -4,6 +4,7 @@ this.controller =
   init: (argument) -> 
     @element_()
     @elements_()
+    @vk_()
 
 # Element - one
   element_: () ->
@@ -59,6 +60,7 @@ this.controller =
         return ui.elements.read.show() if state.elements.read
         error.elements.read()
 
-
-
-
+  vk_: () ->
+    @vk =
+      auth: () ->
+        net.vk.auth()

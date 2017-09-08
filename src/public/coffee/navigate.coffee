@@ -11,6 +11,7 @@ this.navigate =
       when 'elementAddShow'
         ui.element.container.show()
       when 'elementAdd'
+        env.client.action = 'element_add'
         controller.element.add()
       when 'elementFieldAppend'
         controller.element.field.append()
@@ -22,5 +23,10 @@ this.navigate =
       when 'elementsRead'
         env.client.action = 'elements_read'
         controller.elements.read()
+
+      when 'vkAuth'
+        env.client.action = 'vk_auth'
+        controller.vk.auth()
+
       else
         break

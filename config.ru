@@ -65,23 +65,21 @@ begin
     env['rack_input'] ||= env['rack.input'].read # После считывания env["rack.input"].read кудато проподает (можно потом глянуть - зачем?)
     env['request'] ||= Rack::Request.new env
 
-    main = MegaController.new env
+    mcontroller = MegaController.new env
 
-    return main.instance_eval Router.to env['REQUEST_PATH']
+    return Router.to mcontroller, env['REQUEST_PATH']
   # // def call(env)
 
 
 rescue => e
- 
-  message = Oj.load(e.message)
+  Rendering::Exception.console e
+
+  message = JSON.parse(e.message)
   case message['rendertempate']
   when "Rendering"
-    # Rendering::Exception.console e
-
-    return render_page( message, main.env, env['request'] ) if main.respond_to? :env
+    return render_page( message, mcontroller.env, env['request'] ) if mcontroller.respond_to? :env
     return render_page( message, nil, env['request'] )
   when "ANother"
-    # Rendering::Exception.console e
     # Another mixin File
   else
     # Rendering::Exception.console e
