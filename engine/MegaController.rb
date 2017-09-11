@@ -25,7 +25,8 @@ class MegaController < ControllerInitialize
   def vk_verify
     #render :content => { :data=>VkontakteRu.new(@env).vk_auth }
     vk = VkontakteApi.authorize(code: @thin.env['request'].params['code'])
-    render :file => { :page_htm => 'vk_verify', :data => {'code'=>vk.friends.get} }
+    wall = vk.wall.get(owner_id: 364687,count: 2)
+    render :file => { :page_htm => 'vk_verify', :data => {'code'=>wall} }
   end
   def vk_auth
     render :content => { :data=>VkontakteRu.new(@env).vk_auth }
