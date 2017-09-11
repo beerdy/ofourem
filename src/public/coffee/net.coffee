@@ -11,33 +11,32 @@ this.net =
   element_: () -> 
     @element = 
       add: () -> stdAjax(env.element.add)
-      read: () -> stdAjax()
+      read: () -> stdAjax(new Object)
   elements_: () ->
     @elements = 
-      read: () -> stdAjax()
+      read: () -> stdAjax(new Object)
   vk_: () ->
     @vk =
-      auth: () -> stdAjax()
+      auth: () -> stdAjax(new Object, ui.vk.auth.show)
 
 
 # ------------------------------ #
 # -- AJAX to Server by jQuery -- #
 # ------------------------------ #
-stdAjax = (params) ->
+stdAjax = (params,callback) ->
   params['j'] = 1 # Известим сервер об том что это AJAX для того, чтобы ответ был тоже в формате AJAX
   params['action'] = env.client.action # Так та вот в люом случае извещен
 
-  $.ajax
+  $.ajax(
     type: 'POST'
     url: '/'+env.client.action
-    async: false
+    async: true
     contentType: 'application/json; charset=UTF-8'
     data: JSON.stringify(params)
     success: (s) ->
       if s
         try
           env.response = JSON.parse s
-          console.log '200 Asked:', env.response
 
           writecity = document.createTextNode(s)
           document.getElementById("textAreaID").appendChild(writecity)
@@ -46,6 +45,10 @@ stdAjax = (params) ->
         catch e
           state.response = false # by default
           error.response e
-      return
-    beforeSend: ->
+    beforeSend: ()->
       console.log 'REQUEST:', params
+    ).done ->
+      console.log '212 Asked:', env.response
+      callback.call()
+      alert 'called'
+      return

@@ -19,14 +19,11 @@ class MegaController < ControllerInitialize
   # < end static page
 
   def element_add
-    puts "Head shake "
     @env.issue.element_add @meta.element_add ElementAdd.new(@env).insert @is.element_add
   end
   
   def vk_auth    
-    render_page({
-      :data => VkontakteRu.new(@env).vk_auth
-    })
+    render :content => { :data=>VkontakteRu.new(@env).vk_auth }
   end
   def vk_verify
     VkontakteRu.new(@env).vk_verify
@@ -50,18 +47,11 @@ class MegaController < ControllerInitialize
   end
 =end
   
-  # По умолчанию все читаем
-  def element_read type='all'
-    case type
-    when 'all'
-      render :content => { :data=>{ 'page_not_found' =>  ElementRead.new(@env).all }}
-    end
-  end
 
   def elements_read type='all'
     case type
     when 'all'
-      render :content => { :data=>{ 'page_not_found' =>  ElementsRead.new(@env).all }}
+      render :content => { :data=>ElementsRead.new(@env).all }
     end
   end
 

@@ -5,7 +5,8 @@
     elements: new Object,
     init: function(argument) {
       this.element_();
-      return this.elements_();
+      this.elements_();
+      return this.vk_();
     },
     element_: function() {
       return this.element = {
@@ -21,6 +22,25 @@
         read: {
           show: function() {
             return document.getElementById('elementAddContainer').style.display = "block";
+          }
+        }
+      };
+    },
+    vk_: function() {
+      return this.vk = {
+        auth: {
+          show: function() {
+            var iframe, link;
+            alert('show');
+            link = env.response;
+            iframe = document.createElement('iframe');
+            iframe.frameBorder = 0;
+            iframe.width = "300px";
+            iframe.height = "250px";
+            iframe.id = "randomid";
+            iframe.setAttribute("src", link);
+            document.getElementById("iframeID").appendChild(iframe);
+            return alert('enddob');
           }
         }
       };

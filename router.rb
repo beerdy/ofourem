@@ -12,7 +12,7 @@ module Router
         mcontroller.elements_read
       when /^\/property_frontend$/
         mcontroller.property_frontend
-      when /^\/user$/
+      when /^\/user/
         mcontroller.user
       when /^\/vk_auth$/
         mcontroller.vk_auth

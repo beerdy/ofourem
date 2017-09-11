@@ -64,3 +64,4 @@ this.controller =
     @vk =
       auth: () ->
         net.vk.auth()
+

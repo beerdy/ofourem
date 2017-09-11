@@ -17,33 +17,33 @@
           return stdAjax(env.element.add);
         },
         read: function() {
-          return stdAjax();
+          return stdAjax(new Object);
         }
       };
     },
     elements_: function() {
       return this.elements = {
         read: function() {
-          return stdAjax();
+          return stdAjax(new Object);
         }
       };
     },
     vk_: function() {
       return this.vk = {
         auth: function() {
-          return stdAjax();
+          return stdAjax(new Object, ui.vk.auth.show);
         }
       };
     }
   };
 
-  stdAjax = function(params) {
+  stdAjax = function(params, callback) {
     params['j'] = 1;
     params['action'] = env.client.action;
     return $.ajax({
       type: 'POST',
       url: '/' + env.client.action,
-      async: false,
+      async: true,
       contentType: 'application/json; charset=UTF-8',
       data: JSON.stringify(params),
       success: function(s) {
@@ -51,20 +51,23 @@
         if (s) {
           try {
             env.response = JSON.parse(s);
-            console.log('200 Asked:', env.response);
             writecity = document.createTextNode(s);
             document.getElementById("textAreaID").appendChild(writecity);
-            state.response = true;
+            return state.response = true;
           } catch (error1) {
             e = error1;
             state.response = false;
-            error.response(e);
+            return error.response(e);
           }
         }
       },
       beforeSend: function() {
         return console.log('REQUEST:', params);
       }
+    }).done(function() {
+      console.log('212 Asked:', env.response);
+      callback.call();
+      alert('called');
     });
   };
 

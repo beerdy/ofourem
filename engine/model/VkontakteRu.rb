@@ -3,9 +3,9 @@ class VkontakteRu
     @env = env
   end
   def vk_auth
-    @env
+    VkontakteApi.authorization_url(scope: [:friends, :photos])
   end
   def vk_verify
-    @env
+    @env.json
   end
 end

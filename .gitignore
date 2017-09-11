@@ -2,12 +2,12 @@ log/
 tmp/
 mongodump/
 public/js/
-config.yml
-config.rb
-email.rb
-db_project.rb
-options_project.rb
-.run_server
+#config.yml
+#config.rb
+#email.rb
+#db_project.rb
+#options_project.rb
+#.run_server
 Gemfile.lock
 
 ._.DS_Store
