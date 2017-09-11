@@ -2,7 +2,7 @@ log/
 tmp/
 mongodump/
 public/js/
-#config.yml
+config.yml
 #config.rb
 #email.rb
 #db_project.rb
