@@ -16,7 +16,7 @@ module Router
         mcontroller.user
       when /^\/vk_auth$/
         mcontroller.vk_auth
-      when /^\/vk_verify$/
+      when /^\/vk_verify/
         mcontroller.vk_verify
       else
         mcontroller.error

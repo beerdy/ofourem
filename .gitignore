@@ -9,7 +9,6 @@ config.yml
 #options_project.rb
 #.run_server
 Gemfile.lock
-
 ._.DS_Store
 .DS_Store
 ._*

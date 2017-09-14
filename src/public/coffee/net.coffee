@@ -50,5 +50,4 @@ stdAjax = (params,callback) ->
     ).done ->
       console.log '212 Asked:', env.response
       callback.call()
-      alert 'called'
       return

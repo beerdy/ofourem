@@ -21,4 +21,3 @@ O4 = init_o4(locale)
 O4_Root = "http://#{O4.prefix}.otklik.pw"
 
 init_db( O4 )
-

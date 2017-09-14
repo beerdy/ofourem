@@ -5,7 +5,7 @@ VkontakteApi.configure do |config|
   # (не нужны при использовании сторонней авторизации)
   config.app_id       = '6175477'
   config.app_secret   = 'hS8lpyMdctjxGcevFJqP'
-  config.redirect_uri = 'http://o4.otklik.pw/vk_verify'
+  config.redirect_uri = 'http://localhost:3000/vk_verify'
 =begin
   # faraday-адаптер для сетевых запросов
   config.adapter = :net_http

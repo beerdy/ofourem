@@ -72,7 +72,7 @@ begin
 
 
 rescue => e
-  Rendering::Exception.console e
+  #Rendering::Exception.console e
 
   message = JSON.parse(e.message)
   case message['rendertempate']

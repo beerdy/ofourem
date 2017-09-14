@@ -30,17 +30,9 @@
       return this.vk = {
         auth: {
           show: function() {
-            var iframe, link;
-            alert('show');
+            var link;
             link = env.response;
-            iframe = document.createElement('iframe');
-            iframe.frameBorder = 0;
-            iframe.width = "300px";
-            iframe.height = "250px";
-            iframe.id = "randomid";
-            iframe.setAttribute("src", link);
-            document.getElementById("iframeID").appendChild(iframe);
-            return alert('enddob');
+            return window.location.href = link;
           }
         }
       };

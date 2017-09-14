@@ -25,14 +25,6 @@ this.ui =
     @vk = 
       auth:
         show: () ->
-          alert 'show'
           link = env.response
-          iframe = document.createElement 'iframe'
-          iframe.frameBorder=0
-          iframe.width="300px"
-          iframe.height="250px"
-          iframe.id="randomid"
-          iframe.setAttribute "src", link
-          document.getElementById("iframeID").appendChild iframe
-          alert 'enddob'      
-
+          #window.open link ,'VK - Авторизация','height=334,width=660'
+          window.location.href = link

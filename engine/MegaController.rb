@@ -22,11 +22,13 @@ class MegaController < ControllerInitialize
     @env.issue.element_add @meta.element_add ElementAdd.new(@env).insert @is.element_add
   end
   
-  def vk_auth    
-    render :content => { :data=>VkontakteRu.new(@env).vk_auth }
-  end
   def vk_verify
-    VkontakteRu.new(@env).vk_verify
+    #render :content => { :data=>VkontakteRu.new(@env).vk_auth }
+    vk = VkontakteApi.authorize(code: @thin.env['request'].params['code'])
+    render :file => { :page_htm => 'vk_verify', :data => {'code'=>vk.friends.get} }
+  end
+  def vk_auth
+    render :content => { :data=>VkontakteRu.new(@env).vk_auth }
   end
 =begin
   def element_add_
