@@ -25,8 +25,15 @@ class MegaController < ControllerInitialize
   def vk_verify
     #render :content => { :data=>VkontakteRu.new(@env).vk_auth }
     vk = VkontakteApi.authorize(code: @thin.env['request'].params['code'])
-    wall = vk.wall.get(owner_id: 364687,count: 2)
-    render :file => { :page_htm => 'vk_verify', :data => {'code'=>wall} }
+    #wall = vk.wall.get(owner_id: 4684420,count: 2)
+    code = '
+var post=API.wall.get({"owner_id":393858255,"offset":0,"count":100});
+var len=post.length;
+return post[2];'
+
+    wall = vk.execute(code: code)
+    puts "WALL====================================: #{wall}"
+    render :file => { :page_htm => 'vk_verify', :data => {'code'=>JSON.parse([wall.to_json].to_json).first} }
   end
   def vk_auth
     render :content => { :data=>VkontakteRu.new(@env).vk_auth }

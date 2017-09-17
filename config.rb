@@ -10,6 +10,7 @@ require 'erb'
 require 'mongo'
 require 'vkontakte_api'
 
+include ERB::Util
 include OptionsProject
 include DbProject
 

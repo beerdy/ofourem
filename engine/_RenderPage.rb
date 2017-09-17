@@ -7,7 +7,7 @@ HEADERS_DEFAULT_STATIC = {'Content-Type' => 'text/html', 'charset' => 'utf-8'}
 
 module RenderPage
   # Всегда пока 200
-
+  include ERB::Util
   def render_page(message=nil,env=nil,request)
     type, options = message.first
 

@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>o4em3.0</title>
-  </head>
-  <body>
-    Hello world - <%=@code%>
-  </body>
-</html>
+<a href="/" class="btn btn-warning">На главную</a>
+<div id="json">
+  <pre id="json-renderer"></pre>
+</div>
+<script type="text/javascript">
+  var code=JSON.parse('<%=@code%>');
+  console.log(code);
+  $('#json-renderer').empty().jsonViewer(code);
+</script>
