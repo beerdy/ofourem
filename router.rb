@@ -18,6 +18,8 @@ module Router
         mcontroller.vk_auth
       when /^\/vk_verify/
         mcontroller.vk_verify
+      when /^\/test_json/
+        mcontroller.test_json
       else
         mcontroller.error
       end

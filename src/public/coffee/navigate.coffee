@@ -27,6 +27,8 @@ this.navigate =
       when 'vkAuth'
         env.client.action = 'vk_auth'
         controller.vk.auth()
-
+      when 'test_json'
+        env.client.action = 'test_json'
+        controller.test_json()
       else
         break

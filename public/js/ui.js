@@ -36,6 +36,10 @@
           }
         }
       };
+    },
+    test_json: function() {
+      $("#textAreaID").empty().append(env.response_original);
+      $('#json-renderer').empty().jsonViewer(env.response);
     }
   };
 

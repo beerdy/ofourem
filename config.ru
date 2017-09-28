@@ -2,6 +2,7 @@
 
 
 require './lib/deep_struct'
+require './lib/ip_project'
 
 require './template'
 require './property'
@@ -16,6 +17,7 @@ use Rack::Static, :urls => ['/public']
 require './config.rb'
 require './engine/_RenderPage.rb'
 require './engine/_ControllerInitialize.rb'
+require './engine/modules/Auth.rb'
 
 require './router.rb'
 
@@ -24,7 +26,7 @@ require './engine/config/vkontakte_api.rb'
 #===================#
 # -- Mix методов -- #
 #===================#
-INCLUDING_PATH = ['engine','engine/model']
+INCLUDING_PATH = ['engine','engine/business']
 SHARED_PATH = 'engine/shared'
 
 
@@ -53,6 +55,7 @@ INCLUDING_PATH.each do |path|
 end
 
 
+
 class Application
   include RenderPage
   def call(env)
@@ -70,9 +73,8 @@ begin
     return Router.to mcontroller, env['REQUEST_PATH']
   # // def call(env)
 
-
 rescue => e
-  #Rendering::Exception.console e
+  Rendering::Exception.console e
 
   message = JSON.parse(e.message)
   case message['rendertempate']
@@ -82,7 +84,7 @@ rescue => e
   when "ANother"
     # Another mixin File
   else
-    # Rendering::Exception.console e
+    
   end
 
 end ### // "rescue" exception

@@ -65,3 +65,6 @@ this.controller =
       auth: () ->
         net.vk.auth()
 
+  test_json: () ->
+    net.test_json()
+

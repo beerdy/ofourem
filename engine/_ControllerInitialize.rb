@@ -12,6 +12,9 @@ class ControllerInitialize
   def initialize(environment)
     @thin = ThinEnv.new(environment)
 
+    # Проверка автризации
+    @auth = AuthController.new(environment)
+    
     # Валидируем и устанавливаем данные от клиента
     @env = Environment.new environment
 

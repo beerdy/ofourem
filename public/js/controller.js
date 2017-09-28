@@ -75,6 +75,9 @@
           return net.vk.auth();
         }
       };
+    },
+    test_json: function() {
+      return net.test_json();
     }
   };
 

@@ -19,6 +19,8 @@ module DbProject
   end
 
   def init_collections(db_project)
+    $db_project = db_project
+
     $authn_o4   = db_project[:authn]
     $element_o4 = db_project[:element]
   end

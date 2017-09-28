@@ -2,8 +2,11 @@
 <div id="json">
   <pre id="json-renderer"></pre>
 </div>
+<div id="ddata"></div>
 <script type="text/javascript">
-  var code=JSON.parse('<%=@code%>');
+  var data='<%=@code%>';
+  $('#ddata').append(data);
+  var code=JSON.parse(data);
   console.log(code);
   $('#json-renderer').empty().jsonViewer(code);
 </script>

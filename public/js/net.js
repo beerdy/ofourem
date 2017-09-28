@@ -34,6 +34,9 @@
           return stdAjax(new Object, ui.vk.auth.show);
         }
       };
+    },
+    test_json: function() {
+      return stdAjax(new Object, ui.test_json);
     }
   };
 
@@ -50,6 +53,7 @@
         var e, writecity;
         if (s) {
           try {
+            env.response_original = s;
             env.response = JSON.parse(s);
             writecity = document.createTextNode(s);
             document.getElementById("textAreaID").appendChild(writecity);

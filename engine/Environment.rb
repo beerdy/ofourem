@@ -1,7 +1,17 @@
 # encoding: UTF-8
 
+class Client
+  attr_reader :ip, :agent
+
+  def initialize environment
+    @ip = IPProject.get_ip environment
+    @agent = environment['HTTP_USER_AGENT']
+  end
+end
+
 class Environment
   attr_accessor :issue
+  attr_reader :client
 
   attr_reader :request
   attr_reader :rack_input
@@ -11,10 +21,12 @@ class Environment
 
   def initialize environment
     @rack_input = environment['rack_input']
+    @client = Client.new environment
+
   end
 
   def json?
-    @json.respond_to?(:keys) ? !@json.keys[0].nil? : false 
+    @json.respond_to?(:keys) ? !@json.keys[0].nil? : false
   end
   def json
     begin

@@ -28,3 +28,7 @@ this.ui =
           link = env.response
           #window.open link ,'VK - Авторизация','height=334,width=660'
           window.location.href = link
+  test_json: () ->
+    $("#textAreaID").empty().append env.response_original
+    $('#json-renderer').empty().jsonViewer env.response
+    return

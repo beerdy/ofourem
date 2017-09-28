@@ -2,21 +2,25 @@
 
 class MegaController < ControllerInitialize
 
-  # > static page
   def index
-    #render_page. тут static
     render :index => true
   end
 
   def admin
-    #render_page. тут static
     render :content => { :page_htm => 'admin' }
   end
  
   def user
     render :file => { :page_htm => 'user' }
   end
-  # < end static page
+
+  def test_json
+    some = {'some'=>'LARRRRRR: Л. Гузеева к/ф "СВ.Спальный вагон"'}
+    render :content => { :data=>some }
+  end
+
+  def post_json
+  end
 
   def element_add
     @env.issue.element_add @meta.element_add ElementAdd.new(@env).insert @is.element_add
@@ -32,31 +36,13 @@ var len=post.length;
 return post[2];'
 
     wall = vk.execute(code: code)
-    puts "WALL====================================: #{wall}"
-    render :file => { :page_htm => 'vk_verify', :data => {'code'=>JSON.parse([wall.to_json].to_json).first} }
+    some = {'some'=>'LARRRRRR: Л. Гузеева к/ф "СВ.Спальный вагон"'}
+    render :file => { :page_htm => 'vk_verify', :data => { :code => some} }
   end
+
   def vk_auth
     render :content => { :data=>VkontakteRu.new(@env).vk_auth }
   end
-=begin
-  def element_add_
-    obj_tags = TagsAdd.new()
-    obj_tags.dothis
-
-    obj_image = ImageAdd.new()
-    obj_image.element_add
-
-    obj_element_add = elementAdd.new()
-    obj_element_add.dothis
-
-    if obj_element_add.ok then @meta.element_add else @downgrade.element.add end
-
-    render_page({
-      :data => @result.data
-    })
-  end
-=end
-  
 
   def elements_read type='all'
     case type
@@ -64,7 +50,6 @@ return post[2];'
       render :content => { :data=>ElementsRead.new(@env).all }
     end
   end
-
 
   def send_list
     obj_send_list = SendList.new( @env )

@@ -18,6 +18,8 @@ this.net =
   vk_: () ->
     @vk =
       auth: () -> stdAjax(new Object, ui.vk.auth.show)
+  test_json: () ->
+    stdAjax(new Object, ui.test_json)
 
 
 # ------------------------------ #
@@ -36,6 +38,7 @@ stdAjax = (params,callback) ->
     success: (s) ->
       if s
         try
+          env.response_original = s
           env.response = JSON.parse s
 
           writecity = document.createTextNode(s)

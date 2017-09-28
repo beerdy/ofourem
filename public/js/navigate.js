@@ -23,6 +23,9 @@
         case 'vkAuth':
           env.client.action = 'vk_auth';
           return controller.vk.auth();
+        case 'test_json':
+          env.client.action = 'test_json';
+          return controller.test_json();
         default:
           break;
       }

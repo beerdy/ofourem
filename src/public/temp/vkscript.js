@@ -1,4 +1,4 @@
-var posts=[];
+
 var polls=[];
 
 var requests_index=0;
@@ -11,14 +11,13 @@ var requests_len=1;
 
 var items_index=0;
 var post_type;
-var posts_count=0;
 
 while(requests_index<=requests_max)
 {
   if(requests_len!=0){
-    posts=posts+[API.wall.get({"owner_id":393858255,"offset":offset,"count":count})];
-    requests_len=posts[posts_count].length;
-    posts_count=posts_count+1;
+    post=API.wall.get({"owner_id":393858255,"offset":offset,"count":count});
+    requests_len=post.items.length;
+    
     items_index=0;
     while(items_index<=requests_len){
       post_type=post.items[items_index].attachments[0].type;
@@ -32,8 +31,8 @@ while(requests_index<=requests_max)
   };
   requests_index=requests_index+1;
 }
-var alen=polls.length;
-return posts_count;
+var alen=arr.length;
+return arr;
 
 
 
