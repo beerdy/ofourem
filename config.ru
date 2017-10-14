@@ -56,13 +56,12 @@ end
 
 
 Application = lambda do |env|
-  pp env
-# Переписываем стандартное исключение для всего кода (собственно только на вывод)
-  if Faye::WebSocket.websocket? env
-    return WSPoll.call env
-  end
-begin
+  
   # По сути берется только среда - остальное независимо
+  return WSPoll.call envif Faye::WebSocket.websocket? env
+
+# Переписываем стандартное исключение для всего кода (собственно только на вывод)
+begin
 
   no_route = true
 
