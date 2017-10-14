@@ -58,7 +58,7 @@ end
 Application = lambda do |env|
 
   # По сути берется только среда - остальное независимо
-  return WSPoll.call envif Faye::WebSocket.websocket? env
+  return WSPoll.call env if Faye::WebSocket.websocket? env
 
 # Переписываем стандартное исключение для всего кода (собственно только на вывод)
 begin

@@ -6,8 +6,7 @@ NOWS = 'No WS request.'
 
 WSPoll = lambda do |env|
 
-  options = {:extensions => [PermessageDeflate], :ping => 5}
-  ws = Faye::WebSocket.new(env, ['irc', 'xmpp'], options)
+  ws = Faye::WebSocket.new(env, ['irc', 'xmpp'],  {:extensions => O4ptions.poll.extensions, :ping => O4ptions.poll.ping } )
   p [:open, ws.url, ws.version, ws.protocol]
 
   ws.onmessage = lambda do |event|
