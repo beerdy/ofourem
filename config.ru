@@ -56,7 +56,7 @@ end
 
 
 Application = lambda do |env|
-  
+
   # По сути берется только среда - остальное независимо
   return WSPoll.call envif Faye::WebSocket.websocket? env
 
@@ -98,7 +98,5 @@ app = Rack::Builder.app do
 end
 
 run app 
-
-
 
 
