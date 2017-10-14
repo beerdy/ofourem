@@ -20,6 +20,8 @@ module Router
         mcontroller.vk_verify
       when /^\/test_json/
         mcontroller.test_json
+      when /^\/client/
+        mcontroller.client
       else
         mcontroller.error
       end

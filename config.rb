@@ -2,7 +2,11 @@
 
 require 'yaml'
 require 'rubygems'
+require 'eventmachine'
 require 'rack'
+require 'thin'
+require 'faye/websocket'
+require 'permessage_deflate'
 require 'json'
 require 'oj'
 require 'pp'
@@ -18,6 +22,9 @@ include DbProject
 locale = 'ru'
 
 O4 = init_o4(locale)
+
+# Aliase for options
+O4ptions = O4
 
 O4_Root = "http://#{O4.prefix}.otklik.pw"
 

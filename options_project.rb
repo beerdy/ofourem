@@ -30,6 +30,10 @@ module OptionsProject
         # можно nil тогдп генериться автоматом или неуказывать
         # :db_name => nil
       },
+      :poll => {
+        :extensions => [PermessageDeflate], 
+        :ping => 5
+      },
       :log => {
         :level => 1
       },

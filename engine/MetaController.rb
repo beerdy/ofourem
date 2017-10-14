@@ -6,7 +6,6 @@ class MetaController
   end
 
   def element_add meta
-    puts "No meta for added element: #{meta}"
     return meta
   end
 end

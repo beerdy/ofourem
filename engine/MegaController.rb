@@ -14,6 +14,10 @@ class MegaController < ControllerInitialize
     render :file => { :page_htm => 'user' }
   end
 
+  def client
+    render :file => { :page_htm => 'client' }
+  end
+
   def test_json
     some = {'some'=>'LARRRRRR: Л. Гузеева к/ф "СВ.Спальный вагон"'}
     render :content => { :data=>some }

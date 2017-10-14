@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>WebSocket test</title>
+  </head>
+  <body>
+
+    <h1>WebSocket test</h1>
+    <ul></ul>
+
+    <script type="text/javascript">
+      var hostname = 'localhost';
+      var port = '9292';
+
+      var Socket = window.MozWebSocket || window.WebSocket,
+        protos = ['foo', 'bar', 'xmpp'],
+        socket = new Socket('ws://' + hostname + ':' + port + '/', protos);
+
+      var area = document.getElementsByTagName('ul')[0], index = 0;
+
+      var insert = function(text) {
+        area.innerHTML += '<li>' + text + '</li>';
+      };
+
+      /*socket.addEventListener('open', function() {
+        log('OPEN: ' + socket.protocol);
+        socket.send('Hello, world man');
+      });*/
+      
+      socket.onopen = function(){
+         //console.log("Connection Established");
+         socket.send('Hello, world man');
+      };
+      socket.onmessage = function(event) {
+        insert('MESSAGE: ' + event.data);
+        setTimeout(function() { socket.send(++index + ' ' + event.data) }, 2000);
+      };
+
+      socket.onerror = function(event) {
+        insert('ERROR: ' + event.message);
+      };
+      socket.onclose = function(event) {
+        insert('CLOSE: ' + event.code + ', ' + event.reason);
+      };
+    </script>
+
+  </body>
+</html>

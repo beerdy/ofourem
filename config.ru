@@ -1,34 +1,33 @@
 # encoding: UTF-8
 
-
 require './lib/deep_struct'
 require './lib/ip_project'
+require './lib/app_utils'
 
 require './template'
 require './property'
 require './options_project'
 require './db_project'
 
-require './TestDriver.rb'
+require './TestDriver'
 
-use Rack::Reloader, 0
-use Rack::Static, :urls => ['/public']
-
-require './config.rb'
-require './engine/_RenderPage.rb'
-require './engine/_ControllerInitialize.rb'
+require './config'
+require './engine/_RenderPage'
+require './engine/_ControllerInitialize'
 require './engine/modules/Auth.rb'
-
-require './router.rb'
+require './engine/poll/WSPoll'
+require './router'
 
 require './engine/config/vkontakte_api.rb'
+
 
 #===================#
 # -- Mix методов -- #
 #===================#
-INCLUDING_PATH = ['engine','engine/business']
+# Что замешиваем
 SHARED_PATH = 'engine/shared'
-
+# Куда замешиваем
+INCLUDING_PATH = ['engine','engine/business']
 
 INCLUDING_PATH.each do |path|
   # Подключим расширяемые модули
@@ -56,31 +55,32 @@ end
 
 
 
-class Application
-  include RenderPage
-  def call(env)
+Application = lambda do |env|
+  pp env
 # Переписываем стандартное исключение для всего кода (собственно только на вывод)
+  if Faye::WebSocket.websocket? env
+    return WSPoll.call env
+  end
 begin
+  # По сути берется только среда - остальное независимо
 
-  # def call(env)
-    no_route = true
+  no_route = true
 
-    env['rack_input'] ||= env['rack.input'].read # После считывания env["rack.input"].read кудато проподает (можно потом глянуть - зачем?)
-    env['request'] ||= Rack::Request.new env
+  env['rack_input'] ||= env['rack.input'].read # После считывания env["rack.input"].read кудато проподает (можно потом глянуть - зачем?)
+  env['request'] ||= Rack::Request.new env
 
-    mcontroller = MegaController.new env
+  mcontroller = MegaController.new env
 
-    return Router.to mcontroller, env['REQUEST_PATH']
-  # // def call(env)
+  return Router.to mcontroller, env['REQUEST_PATH']
 
 rescue => e
-  Rendering::Exception.console e
+  #Rendering::Exception.console e
 
   message = JSON.parse(e.message)
   case message['rendertempate']
   when "Rendering"
-    return render_page( message, mcontroller.env, env['request'] ) if mcontroller.respond_to? :env
-    return render_page( message, nil, env['request'] )
+    return RenderPage.render_page( message, mcontroller.env, env['request'] ) if mcontroller.respond_to? :env
+    return RenderPage.render_page( message, nil, env['request'] )
   when "ANother"
     # Another mixin File
   else
@@ -88,7 +88,18 @@ rescue => e
   end
 
 end ### // "rescue" exception
-end ## // "def call" method
-end # // "Application" Class
+end # // "Application" lambda
 
-run Application.new()
+Faye::WebSocket.load_adapter 'thin'
+
+app = Rack::Builder.app do
+  use Rack::Reloader, 0
+  use Rack::Static, :urls => ['/public']
+  run Application
+end
+
+run app 
+
+
+
+
